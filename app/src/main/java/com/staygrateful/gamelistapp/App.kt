@@ -4,7 +4,7 @@ import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 /**
- * Application class for TodoListApp.
+ * Application class for GameListApp.
  *
  * This class represents the application class for App.
  * It initializes Hilt for dependency injection.
