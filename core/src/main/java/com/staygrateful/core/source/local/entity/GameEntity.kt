@@ -1,4 +1,4 @@
-package com.staygrateful.core.database.entity
+package com.staygrateful.core.source.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

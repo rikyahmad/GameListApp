@@ -9,22 +9,27 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8ea0cef-dc0c-4861-b5ef-6839017ee1c6" name="Changes" comment="Add features initial directory structure and update dependencies&#10;+ Added initial folder structure for Clean Architecture.&#10;! Updated implementation dependencies to the latest versions.">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/di/AppModule.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/database/dao/GameDao.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/database/database/AppDatabase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/database/entity/GameEntity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/repository/NetworkRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/model/Game.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/repository/GameRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/model/GameDomainModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/repository/GameDomainRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/usecase/GetGamesUseCase.kt" afterDir="false" />
+    <list default="true" id="a8ea0cef-dc0c-4861-b5ef-6839017ee1c6" name="Changes" comment="Implement various features and modules&#10;+ Add AppModule in app module&#10;+ Implement Room database entity, DAO, etc. in core module&#10;+ Add domain and model in feature-list module">
+      <change afterPath="$PROJECT_DIR$/.idea/androidTestResultsUserPreferences.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/androidTest/java/com/staygrateful/core/ApiServiceImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/androidTest/java/com/staygrateful/core/ApiServiceTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/model/GameResponse.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/source/local/GameLocalDataSource.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/source/remote/GameRemoteDataSource.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/di/AppModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/di/AppModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/ui/main/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/ui/main/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/di/NetworkModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/di/NetworkModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/model/ApiResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/repository/NetworkRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/repository/NetworkRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/service/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/service/ApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-detail/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-detail/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-favorites/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-favorites/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-list/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/model/Game.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/repository/GameRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/repository/GameRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +39,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/Users/riky/.android/avd/Phone_API_26.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=Default, isTemplate=false, identifier=serial=192.168.1.16:5555;connection=3c62d2a4)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -63,7 +68,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Android App.app.executor": "Run",
+    "Android Instrumented Tests.ApiServiceTest (1).executor": "Run",
+    "Android Instrumented Tests.ApiServiceTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -91,13 +99,15 @@
       <recent name="$PROJECT_DIR$/features" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.staygrateful.core.network.model" />
+      <recent name="com.staygrateful.core.data.model" />
       <recent name="com.staygrateful.gamelistapp.ui.main" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="com.staygrateful.gamelistapp" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Android App.app">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="GameListApp.app.main" />
       <option name="DEPLOY" value="true" />
@@ -165,6 +175,77 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ApiServiceTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true">
+      <module name="GameListApp.core.androidTest" />
+      <option name="TESTING_TYPE" value="2" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="ApiServiceTest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_NAME_REGEX" value="" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="RETENTION_ENABLED" value="No" />
+      <option name="RETENTION_MAX_SNAPSHOTS" value="2" />
+      <option name="RETENTION_COMPRESS_SNAPSHOTS" value="false" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Android App.app" />
+      <item itemvalue="Android Instrumented Tests.ApiServiceTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Android Instrumented Tests.ApiServiceTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -207,7 +288,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716356446105</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Implement various features and modules&#10;+ Add AppModule in app module&#10;+ Implement Room database entity, DAO, etc. in core module&#10;+ Add domain and model in feature-list module">
+      <option name="closed" value="true" />
+      <created>1716358029351</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716358029351</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -218,6 +307,7 @@
     <MESSAGE value="Add and Update Dependencies&#10;+ Add Room, Hilt, Ktor, Coroutine, Timber, and Paging3 libraries.&#10;! Updated `libs.versions.toml` and corresponding `build.gradle.kts` files with new dependencies" />
     <MESSAGE value="Implement Hilt for Dependency Injection in App&#10;+ Configure Hilt Application class&#10;+ Add Hilt annotations to necessary classes&#10;! Change MainActivity location to ui/main" />
     <MESSAGE value="Add features initial directory structure and update dependencies&#10;+ Added initial folder structure for Clean Architecture.&#10;! Updated implementation dependencies to the latest versions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add features initial directory structure and update dependencies&#10;+ Added initial folder structure for Clean Architecture.&#10;! Updated implementation dependencies to the latest versions." />
+    <MESSAGE value="Implement various features and modules&#10;+ Add AppModule in app module&#10;+ Implement Room database entity, DAO, etc. in core module&#10;+ Add domain and model in feature-list module" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement various features and modules&#10;+ Add AppModule in app module&#10;+ Implement Room database entity, DAO, etc. in core module&#10;+ Add domain and model in feature-list module" />
   </component>
 </project>

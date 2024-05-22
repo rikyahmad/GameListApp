@@ -1,10 +1,10 @@
-package com.staygrateful.core.database.dao
+package com.staygrateful.core.source.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.staygrateful.core.database.entity.GameEntity
+import com.staygrateful.core.source.local.entity.GameEntity
 
 @Dao
 interface GameDao {

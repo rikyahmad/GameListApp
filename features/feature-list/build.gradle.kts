@@ -38,11 +38,13 @@ android {
 dependencies {
 
     implementation(project(":core"))
-
+    implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.gson)
     testImplementation(libs.junit)
+    testImplementation(libs.lifecycle.viewmodel.ktx)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 

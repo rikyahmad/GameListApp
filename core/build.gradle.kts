@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -15,6 +16,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        buildConfigField("String", "API_KEY", "\"${rootProject.ext["apiKey"]}\"")
     }
 
     buildTypes {
@@ -30,6 +32,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        buildConfig = true
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -37,14 +42,10 @@ android {
 
 dependencies {
 
-    implementation(project(":features:feature-list"))
-    implementation(project(":features:feature-search"))
-    implementation(project(":features:feature-detail"))
-    implementation(project(":features:feature-favorites"))
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.gson)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -55,8 +56,10 @@ dependencies {
     implementation(libs.ktor.client.serialization)
     implementation(libs.ktor.client.logging)
     implementation(libs.ktor.client.negotiation)
+    implementation(libs.ktor.client.mock)
     implementation(libs.ktor.serialization.json)
     implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.gson)
 
     // Hilt
     implementation(libs.hilt.android)
@@ -65,4 +68,12 @@ dependencies {
     // Room
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
+
+    // Testing
+    //implementation(libs.test.mockk)
+    implementation(libs.test.mockwebserver)
+    testImplementation(libs.test.coroutines)
+    testImplementation(libs.test.kotlin)
+    testImplementation(libs.test.kotlin.junit)
+    androidTestImplementation(libs.test.mockk.android)
 }
