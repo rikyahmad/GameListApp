@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8ea0cef-dc0c-4861-b5ef-6839017ee1c6" name="Changes" comment="Add and Update Dependencies&#10;+ Add Room, Hilt, Ktor, Coroutine, Timber, and Paging3 libraries.&#10;! Updated `libs.versions.toml` and corresponding `build.gradle.kts` files with new dependencies" />
+    <list default="true" id="a8ea0cef-dc0c-4861-b5ef-6839017ee1c6" name="Changes" comment="Add features initial directory structure and update dependencies&#10;+ Added initial folder structure for Clean Architecture.&#10;! Updated implementation dependencies to the latest versions.">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/di/AppModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/database/dao/GameDao.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/database/database/AppDatabase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/database/entity/GameEntity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/repository/NetworkRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/model/Game.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/repository/GameRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/model/GameDomainModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/repository/GameDomainRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/usecase/GetGamesUseCase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/service/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/service/ApiService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/feature-detail/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-detail/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/feature-favorites/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-favorites/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/feature-list/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/build.gradle.kts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,11 +34,18 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=R9RN6019Q3F)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/Users/riky/.android/avd/Phone_API_26.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,13 +74,27 @@
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/riky/AndroidStudioProjects/GameListApp/features/feature-detail/src/main/java/com/staygrateful/feature_detail",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail" />
+      <recent name="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites" />
+      <recent name="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search" />
+      <recent name="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/presentation" />
+      <recent name="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/features" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.staygrateful.gamelistapp.ui.main" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.staygrateful.gamelistapp" />
     </key>
   </component>
   <component name="RunManager">
@@ -149,7 +191,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716347561024</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Implement Hilt for Dependency Injection in App&#10;+ Configure Hilt Application class&#10;+ Add Hilt annotations to necessary classes&#10;! Change MainActivity location to ui/main">
+      <option name="closed" value="true" />
+      <created>1716351493178</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716351493178</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add features initial directory structure and update dependencies&#10;+ Added initial folder structure for Clean Architecture.&#10;! Updated implementation dependencies to the latest versions.">
+      <option name="closed" value="true" />
+      <created>1716356446105</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716356446105</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -158,6 +216,8 @@
     </ignored-roots>
     <MESSAGE value="+ Added 'core' module for shared business logic and utilities.&#10;+ Added 'feature-list' module for displaying list of games.&#10;+ Added 'feature-search' module for game search functionality.&#10;+ Added 'feature-detail' module for displaying detailed game information.&#10;+ Added 'feature-favorites' module for managing favorite games." />
     <MESSAGE value="Add and Update Dependencies&#10;+ Add Room, Hilt, Ktor, Coroutine, Timber, and Paging3 libraries.&#10;! Updated `libs.versions.toml` and corresponding `build.gradle.kts` files with new dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add and Update Dependencies&#10;+ Add Room, Hilt, Ktor, Coroutine, Timber, and Paging3 libraries.&#10;! Updated `libs.versions.toml` and corresponding `build.gradle.kts` files with new dependencies" />
+    <MESSAGE value="Implement Hilt for Dependency Injection in App&#10;+ Configure Hilt Application class&#10;+ Add Hilt annotations to necessary classes&#10;! Change MainActivity location to ui/main" />
+    <MESSAGE value="Add features initial directory structure and update dependencies&#10;+ Added initial folder structure for Clean Architecture.&#10;! Updated implementation dependencies to the latest versions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add features initial directory structure and update dependencies&#10;+ Added initial folder structure for Clean Architecture.&#10;! Updated implementation dependencies to the latest versions." />
   </component>
 </project>
