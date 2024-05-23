@@ -1,17 +1,19 @@
 package com.staygrateful.feature_list.data.repository
 
+import androidx.paging.PagingData
+import com.staygrateful.core.source.local.entity.GameEntity
 import com.staygrateful.core.source.remote.model.GameResponse
-import com.staygrateful.core.source.remote.repository.INetworkRepository
-import com.staygrateful.core.utils.Resource
-import com.staygrateful.feature_list.domain.repository.GameDomainRepository
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class GameRepository @Inject constructor(
-    private val repository: INetworkRepository
-) : GameDomainRepository {
+interface GameRepository  {
 
-    override suspend fun getGames(): Flow<Resource<GameResponse>> {
-        return repository.getGames()
-    }
+    suspend fun getRemoteItems(page: Int, pageSize: Int): List<GameResponse.Game>
+
+    fun getPagingItems(): Flow<PagingData<GameEntity>>
+
+    fun getLocalItemsFlow(): Flow<List<GameEntity>>
+
+    suspend fun insertLocalItems(items: List<GameEntity>)
+
+    suspend fun insertLocalItemsAndClear(items: List<GameEntity>)
 }

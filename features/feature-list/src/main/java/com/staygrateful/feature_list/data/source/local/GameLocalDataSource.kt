@@ -1,17 +1,25 @@
 package com.staygrateful.feature_list.data.source.local
 
-import com.staygrateful.core.source.local.dao.GameDao
+import androidx.paging.PagingSource
+import com.staygrateful.core.source.local.database.AppDatabase
 import com.staygrateful.core.source.local.entity.GameEntity
-import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
-class GameLocalDataSource @Inject constructor(
-    private val gameDao: GameDao
-) {
-    suspend fun getGames(): List<GameEntity> {
-        return gameDao.getGames()
-    }
+interface GameLocalDataSource {
 
-    suspend fun saveGames(games: List<GameEntity>) {
-        gameDao.insertGames(games)
-    }
+    val database: AppDatabase
+
+    suspend fun getCount(): Int
+
+    fun getItemsFlow(): Flow<List<GameEntity>>
+
+    suspend fun getItems(pageSize: Int, offset: Int): List<GameEntity>
+
+    fun getItems(): PagingSource<Int, GameEntity>
+
+    suspend fun clearAll()
+
+    suspend fun insertAll(items: List<GameEntity>)
+
+    suspend fun clearAndInsertAll(items: List<GameEntity>)
 }

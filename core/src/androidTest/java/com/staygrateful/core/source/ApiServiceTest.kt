@@ -1,11 +1,10 @@
 package com.staygrateful.core.source
 
-import com.staygrateful.core.BuildConfig
 import com.staygrateful.core.source.remote.model.GameResponse
 import com.staygrateful.core.source.remote.repository.INetworkRepository
 import com.staygrateful.core.source.remote.repository.NetworkRepository
 import com.staygrateful.core.source.remote.service.ApiService
-import com.staygrateful.core.utils.Resource
+import com.staygrateful.core.source.remote.mapper.Resource
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -39,13 +38,13 @@ class ApiServiceTest {
             }
         }
 
-        repository = NetworkRepository(ApiService(client, apiKey = BuildConfig.API_KEY))
+        repository = NetworkRepository(ApiService(client))
     }
 
     @Test
     fun getGamesSuccess() = runBlocking {
-        val response = repository.getGames()
-        val result = mutableListOf<Resource<GameResponse>>()
+        val response = repository.getGames(1, 5)
+        val result = mutableListOf<Resource<GameResponse?>>()
 
         response.collect { value ->
             result.add(value)

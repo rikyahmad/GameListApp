@@ -1,22 +1,31 @@
 package com.staygrateful.core.source.remote.model
 
+import com.google.gson.annotations.SerializedName
+
 data class GameResponse(
     val count: Int?,
     val description: String?,
     val filters: Filters?,
     val next: String?,
-    val nofollow: Boolean?,
-    val nofollow_collections: List<String?>?,
+    @SerializedName("nofollow")
+    val noFollow: Boolean?,
+    @SerializedName("nofollow_collections")
+    val noFollowCollections: List<String>?,
+    @SerializedName("noindex")
     val noindex: Boolean?,
     val previous: Any?,
-    val results: List<Result?>?,
-    val seo_description: String?,
-    val seo_h1: String?,
-    val seo_keywords: String?,
-    val seo_title: String?
+    val results: List<Game>?,
+    @SerializedName("seo_description")
+    val seoDescription: String?,
+    @SerializedName("seo_h1")
+    val seoH1: String?,
+    @SerializedName("seo_keywords")
+    val seoKeywords: String?,
+    @SerializedName("seo_title")
+    val seoTitle: String?
 ) {
     data class Filters(
-        val years: List<Year?>?
+        val years: List<Year>?
     ) {
         data class Year(
             val count: Int?,
@@ -35,33 +44,33 @@ data class GameResponse(
         }
     }
 
-    data class Result(
+    data class Game(
         val added: Int?,
         val added_by_status: AddedByStatus?,
         val background_image: String?,
         val clip: Any?,
         val dominant_color: String?,
         val esrb_rating: EsrbRating?,
-        val genres: List<Genre?>?,
+        val genres: List<Genre>?,
         val id: Int?,
         val metacritic: Int?,
         val name: String?,
-        val parent_platforms: List<ParentPlatform?>?,
-        val platforms: List<Platform?>?,
+        val parent_platforms: List<ParentPlatform>?,
+        val platforms: List<Platform>?,
         val playtime: Int?,
         val rating: Double?,
         val rating_top: Int?,
-        val ratings: List<Rating?>?,
+        val ratings: List<Rating>?,
         val ratings_count: Int?,
         val released: String?,
         val reviews_count: Int?,
         val reviews_text_count: Int?,
         val saturated_color: String?,
-        val short_screenshots: List<ShortScreenshot?>?,
+        val short_screenshots: List<ShortScreenshot>?,
         val slug: String?,
-        val stores: List<Store?>?,
+        val stores: List<Store>?,
         val suggestions_count: Int?,
-        val tags: List<Tag?>?,
+        val tags: List<Tag>?,
         val tba: Boolean?,
         val updated: String?,
         val user_game: Any?

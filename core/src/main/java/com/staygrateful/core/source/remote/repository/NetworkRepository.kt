@@ -2,28 +2,22 @@ package com.staygrateful.core.source.remote.repository
 
 import com.staygrateful.core.source.remote.model.GameResponse
 import com.staygrateful.core.source.remote.service.IApiService
-import com.staygrateful.core.utils.Resource
+import com.staygrateful.core.source.remote.mapper.ApiResponse
+import com.staygrateful.core.source.remote.mapper.Resource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class NetworkRepository @Inject constructor(
     private val apiService: IApiService
-): INetworkRepository {
+): INetworkRepository, ApiResponse() {
 
-    override suspend fun getGames(): Flow<Resource<GameResponse>> {
+    override suspend fun getGames(page: Int, pageSize: Int): Flow<Resource<GameResponse?>> {
         return flow {
             emit(Resource.Loading())
-            try {
-                val response = apiService.getGames()
-                if(response != null) {
-                    emit(Resource.Success(response))
-                } else {
-                    throw Exception("Response is null")
-                }
-            } catch (e: Exception) {
-                emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
-            }
-        }
+            emit(safeApiCall { apiService.getGameList(page, pageSize) })
+        }.flowOn(Dispatchers.IO)
     }
 }

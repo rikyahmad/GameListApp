@@ -1,4 +1,4 @@
-package com.staygrateful.core.utils
+package com.staygrateful.core.source.remote.mapper
 
 sealed class Resource<T>(
     val data: T? = null,

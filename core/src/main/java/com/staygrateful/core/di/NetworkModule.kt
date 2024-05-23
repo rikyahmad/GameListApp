@@ -1,5 +1,6 @@
 package com.staygrateful.core.di
 
+import com.staygrateful.core.BuildConfig
 import com.staygrateful.core.source.remote.repository.INetworkRepository
 import com.staygrateful.core.source.remote.repository.NetworkRepository
 import com.staygrateful.core.source.remote.service.ApiService
@@ -16,6 +17,7 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.gson.gson
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -42,10 +44,19 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    @Named("baseUrl")
+    fun provideBaseUrl(): String {
+        return "https://api.rawg.io/api/"
+    }
+
+    @Provides
+    @Singleton
     fun provideApiService(
         httpClient: HttpClient,
+        @Named("baseUrl")
+        baseUrl: String,
     ): IApiService {
-        return ApiService(httpClient)
+        return ApiService(httpClient, baseUrl)
     }
 
     @Provides

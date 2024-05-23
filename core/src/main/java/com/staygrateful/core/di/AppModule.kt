@@ -7,6 +7,7 @@ import com.staygrateful.core.source.local.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -16,7 +17,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(context: Context): AppDatabase {
+    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(
             context.applicationContext,
             AppDatabase::class.java,
@@ -27,6 +28,6 @@ object AppModule {
     @Provides
     @Singleton
     fun provideGameDao(appDatabase: AppDatabase): GameDao {
-        return appDatabase.gameDao()
+        return appDatabase.dao
     }
 }

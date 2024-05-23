@@ -9,26 +9,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8ea0cef-dc0c-4861-b5ef-6839017ee1c6" name="Changes" comment="Implement various features and modules&#10;+ Add AppModule in app module&#10;+ Implement Room database entity, DAO, etc. in core module&#10;+ Add domain and model in feature-list module">
-      <change afterPath="$PROJECT_DIR$/.idea/androidTestResultsUserPreferences.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/androidTest/java/com/staygrateful/core/ApiServiceImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/androidTest/java/com/staygrateful/core/ApiServiceTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/model/GameResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/source/local/GameLocalDataSource.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/source/remote/GameRemoteDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/di/AppModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/di/AppModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/ui/main/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/ui/main/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/di/NetworkModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/di/NetworkModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/model/ApiResponse.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/repository/NetworkRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/repository/NetworkRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/service/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/service/ApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/model/Game.kt" beforeDir="false" />
+    <list default="true" id="a8ea0cef-dc0c-4861-b5ef-6839017ee1c6" name="Changes" comment="Update project structure and dependencies&#10;+ Moved AppModule to Core Module for better modularization and separation of concerns.&#10;+ Implemented Ktor client to fetch game list from RAWG API.&#10;+ Added unit tests for API integration.&#10;+ Updated project dependencies to the latest versions.&#10;+ Added API_KEY to local.properties for secure API key management.&#10;- Removed redundant dependencies and configurations.&#10;! Ensure to update your local.properties with the new API_KEY.">
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/utils/ApiResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/androidTest/java/com/staygrateful/core/source/ApiServiceTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/androidTest/java/com/staygrateful/core/source/ApiServiceTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/model/GameResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/model/GameResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/repository/INetworkRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/repository/INetworkRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/repository/NetworkRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/repository/NetworkRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/repository/GameRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/repository/GameRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/di/GameListModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/di/GetGameModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/repository/GameDomainRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/usecase/GetGameUsecase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/usecase/GetGamesUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/repository/GetGamesRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/presentation/viewmodel/GameListViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/presentation/viewmodel/GameListViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,11 +30,28 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=Default, isTemplate=false, identifier=serial=192.168.1.16:5555;connection=3c62d2a4)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=Default, isTemplate=false, identifier=serial=192.168.1.14:5555;connection=23089441)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GameListApp" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -55,9 +63,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2gnnekvpcj7qBVOcWiDT38LZQu0" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -66,45 +74,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Android App.app.executor": "Run",
-    "Android Instrumented Tests.ApiServiceTest (1).executor": "Run",
-    "Android Instrumented Tests.ApiServiceTest.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/riky/AndroidStudioProjects/GameListApp/features/feature-detail/src/main/java/com/staygrateful/feature_detail",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;Android Instrumented Tests.ApiServiceTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;Android Instrumented Tests.ApiServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/riky/AndroidStudioProjects/GameListApp/features/feature-list/src/main/java/com/staygrateful/feature_list/presentation/component&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/presentation/component" />
       <recent name="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail" />
       <recent name="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites" />
       <recent name="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search" />
       <recent name="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/presentation" />
-      <recent name="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/features" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
-      <recent name="com.staygrateful.core.network.model" />
-      <recent name="com.staygrateful.core.data.model" />
-      <recent name="com.staygrateful.gamelistapp.ui.main" />
+      <recent name="com.staygrateful.core.source.remote.mapper" />
+      <recent name="com.staygrateful.core.source.local.entity" />
+      <recent name="com.staygrateful.feature_list.domain.repository" />
+      <recent name="com.staygrateful.feature_list.domain.usecase" />
+      <recent name="com.staygrateful.core.network" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
-      <recent name="com.staygrateful.gamelistapp" />
+      <recent name="com.staygrateful.feature_list.data.source.local" />
+      <recent name="com.staygrateful.feature_list.data.source.remote" />
+      <recent name="com.staygrateful.feature_list.data.repository" />
+      <recent name="com.staygrateful.core.utils" />
+      <recent name="com.staygrateful.core.network.remote.repository" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -179,7 +194,7 @@
       <module name="GameListApp.core.androidTest" />
       <option name="TESTING_TYPE" value="2" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="ApiServiceTest" />
+      <option name="CLASS_NAME" value="com.staygrateful.core.source.ApiServiceTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_NAME_REGEX" value="" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
@@ -244,6 +259,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Android Instrumented Tests.ApiServiceTest" />
+        <item itemvalue="Android Instrumented Tests.ApiServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -296,7 +312,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716358029351</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Update project structure and dependencies&#10;+ Moved AppModule to Core Module for better modularization and separation of concerns.&#10;+ Implemented Ktor client to fetch game list from RAWG API.&#10;+ Added unit tests for API integration.&#10;+ Updated project dependencies to the latest versions.&#10;+ Added API_KEY to local.properties for secure API key management.&#10;- Removed redundant dependencies and configurations.&#10;! Ensure to update your local.properties with the new API_KEY.">
+      <option name="closed" value="true" />
+      <created>1716388853007</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716388853007</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -308,6 +332,7 @@
     <MESSAGE value="Implement Hilt for Dependency Injection in App&#10;+ Configure Hilt Application class&#10;+ Add Hilt annotations to necessary classes&#10;! Change MainActivity location to ui/main" />
     <MESSAGE value="Add features initial directory structure and update dependencies&#10;+ Added initial folder structure for Clean Architecture.&#10;! Updated implementation dependencies to the latest versions." />
     <MESSAGE value="Implement various features and modules&#10;+ Add AppModule in app module&#10;+ Implement Room database entity, DAO, etc. in core module&#10;+ Add domain and model in feature-list module" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement various features and modules&#10;+ Add AppModule in app module&#10;+ Implement Room database entity, DAO, etc. in core module&#10;+ Add domain and model in feature-list module" />
+    <MESSAGE value="Update project structure and dependencies&#10;+ Moved AppModule to Core Module for better modularization and separation of concerns.&#10;+ Implemented Ktor client to fetch game list from RAWG API.&#10;+ Added unit tests for API integration.&#10;+ Updated project dependencies to the latest versions.&#10;+ Added API_KEY to local.properties for secure API key management.&#10;- Removed redundant dependencies and configurations.&#10;! Ensure to update your local.properties with the new API_KEY." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update project structure and dependencies&#10;+ Moved AppModule to Core Module for better modularization and separation of concerns.&#10;+ Implemented Ktor client to fetch game list from RAWG API.&#10;+ Added unit tests for API integration.&#10;+ Updated project dependencies to the latest versions.&#10;+ Added API_KEY to local.properties for secure API key management.&#10;- Removed redundant dependencies and configurations.&#10;! Ensure to update your local.properties with the new API_KEY." />
   </component>
 </project>
