@@ -6,6 +6,7 @@ import com.staygrateful.core.source.local.entity.GameEntity
 import kotlinx.coroutines.flow.Flow
 
 interface IDatabaseRepository {
+
     suspend fun insertFavorite(favorite: FavoriteEntity)
     fun getFavoriteGames(): Flow<List<GameEntity>>
     suspend fun deleteFavoriteByGameId(gameId: Int)

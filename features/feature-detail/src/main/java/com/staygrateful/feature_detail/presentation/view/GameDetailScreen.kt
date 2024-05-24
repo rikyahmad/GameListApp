@@ -2,6 +2,7 @@ package com.staygrateful.feature_detail.presentation.view
 
 import android.widget.Toast
 import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.animation.core.tween
@@ -51,7 +52,7 @@ import com.staygrateful.feature_detail.presentation.viewmodel.GameDetailViewMode
 fun SharedTransitionScope.GameDetailScreen(
     data: GameEntity,
     viewmodel: GameDetailViewModel,
-    animatedVisibilityScope: AnimatedContentScope,
+    animatedVisibilityScope: AnimatedVisibilityScope,
     headerHeight: Dp = 350.dp,
     onBackPressed: () -> Unit,
     onUpdateFavorite: (Boolean) -> Unit = {},

@@ -1,4 +1,4 @@
-package com.staygrateful.feature_list.presentation.component
+package com.staygrateful.core.component
 
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi

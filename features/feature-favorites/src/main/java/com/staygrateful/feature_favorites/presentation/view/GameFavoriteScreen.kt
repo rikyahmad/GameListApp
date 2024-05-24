@@ -1,4 +1,4 @@
-package com.staygrateful.feature_list.presentation.view
+package com.staygrateful.feature_favorites.presentation.view
 
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.MaterialTheme
@@ -26,29 +28,29 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.staygrateful.core.component.GameItem
+import com.staygrateful.core.component.GameList
 import com.staygrateful.core.component.InfiniteData
-import com.staygrateful.core.component.InfiniteState
-import com.staygrateful.core.component.SearchInput
 import com.staygrateful.core.component.SimpleAppBar
 import com.staygrateful.core.source.local.entity.GameEntity
 import com.staygrateful.core.theme.LightRippleTheme
-import com.staygrateful.core.component.GameList
-import com.staygrateful.feature_list.presentation.viewmodel.GameListViewModel
+import com.staygrateful.feature_favorites.presentation.viewmodel.GameFavoriteViewModel
+
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-fun SharedTransitionScope.GameListScreen(
+fun SharedTransitionScope.GameFavoriteScreen(
     modifier: Modifier = Modifier,
     pageSize: Int = 10,
-    searchHeight: Dp = 55.dp,
     padding: Dp = 25.dp,
-    paddingVerticalSearch: Dp = 20.dp,
-    viewmodel: GameListViewModel,
+    viewmodel: GameFavoriteViewModel,
     animatedVisibilityScope: AnimatedVisibilityScope,
     onItemClick: (GameEntity) -> Unit = {},
-    onFavoriteClick: () -> Unit = {},
+    onBackPressed: () -> Unit = {},
     onBottomReached: suspend (InfiniteData) -> Unit = {},
 ) {
+
     val items by viewmodel.items.collectAsState(initial = emptyList())
 
     val context = LocalContext.current
@@ -65,20 +67,29 @@ fun SharedTransitionScope.GameListScreen(
                 LocalRippleTheme provides LightRippleTheme,
                 content = {
                     SimpleAppBar(
-                        title = "RAWG GAMES",
-                        actionIconSize = 40.dp,
+                        title = "FAVORITE GAMES",
+                        leadingIconSize = 45.dp,
                         fontSize = 18.sp,
-                        actionIcon = Icons.Default.Favorite,
-                        actionIconColor = Color.White,
+                        leadingIcon = Icons.AutoMirrored.Filled.ArrowBack,
+                        leadingIconColor = Color.White,
                         containerColor = MaterialTheme.colorScheme.primary,
-                        onActionClick = {
-                            onFavoriteClick.invoke()
+                        onLeadingClick = {
+                            onBackPressed.invoke()
                         }
                     )
                 }
             )
         }
     ) { innerPadding ->
+        /*LazyColumn(modifier = Modifier
+            .fillMaxSize()
+            .padding(innerPadding)) {
+            items(favoriteGames.itemCount) { index ->
+                favoriteGames[index]?.let {
+                    GameItem(it, animatedVisibilityScope, onItemClick)
+                }
+            }
+        }*/
         Box(
             modifier = Modifier.padding(innerPadding),
         ) {
@@ -87,30 +98,17 @@ fun SharedTransitionScope.GameListScreen(
                 modifier = modifier
                     .background(Color.White),
                 items = items,
-                contentPadding = PaddingValues(
-                    start = padding,
-                    end = padding,
-                    top = searchHeight + (paddingVerticalSearch * 2),
-                    bottom = padding
-                ),
+                contentPadding = PaddingValues(padding),
                 spacer = padding,
                 animatedVisibilityScope = animatedVisibilityScope,
                 onItemClick = onItemClick,
                 onBottomReached = { data ->
                     onBottomReached.invoke(data)
-                    viewmodel.collect(
+                    /*viewmodel.collect(
                         data.nextPage,
                         data.pageSize,
                         data.state == InfiniteState.Refresh
-                    )
-                }
-            )
-            SearchInput(
-                hint = "Search Games",
-                height = searchHeight,
-                margin = PaddingValues(horizontal = padding, vertical = paddingVerticalSearch),
-                onFocusChange = { focus ->
-                    //Toast.makeText(context, "Focus Change : ${focus.isFocused}", Toast.LENGTH_SHORT).show()
+                    )*/
                 }
             )
         }

@@ -15,6 +15,8 @@ import com.staygrateful.feature_list.presentation.view.GameListScreen
 import com.staygrateful.feature_list.presentation.viewmodel.GameListViewModel
 import com.staygrateful.feature_detail.presentation.view.GameDetailScreen
 import com.staygrateful.feature_detail.presentation.viewmodel.GameDetailViewModel
+import com.staygrateful.feature_favorites.presentation.view.GameFavoriteScreen
+import com.staygrateful.feature_favorites.presentation.viewmodel.GameFavoriteViewModel
 import kotlinx.serialization.Serializable
 
 @OptIn(ExperimentalSharedTransitionApi::class)
@@ -22,6 +24,8 @@ import kotlinx.serialization.Serializable
 fun NavGraph(navController: NavHostController) {
     val gameListViewModel = viewModel<GameListViewModel>()
     val detailViewModel = viewModel<GameDetailViewModel>()
+    val favoriteViewModel = viewModel<GameFavoriteViewModel>()
+
     SharedTransitionLayout {
         NavHost(
             navController = navController,
@@ -35,6 +39,10 @@ fun NavGraph(navController: NavHostController) {
                     onItemClick = { data ->
                         navController.navigate(data.copy())
                     },
+                    onFavoriteClick = {
+                        println("Favorite Clicked!")
+                        navController.navigate(FavoriteScreen)
+                    }
                 )
             }
 
@@ -49,9 +57,25 @@ fun NavGraph(navController: NavHostController) {
                     },
                 )
             }
+
+            composable<FavoriteScreen> {
+                GameFavoriteScreen(
+                    viewmodel = favoriteViewModel,
+                    animatedVisibilityScope = this,
+                    onItemClick = { data ->
+                        navController.navigate(data.copy())
+                    },
+                    onBackPressed = {
+                        navController.popBackStack()
+                    },
+                )
+            }
         }
     }
 }
 
 @Serializable
 object HomeScreen
+
+@Serializable
+object FavoriteScreen
