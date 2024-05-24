@@ -1,8 +1,11 @@
 package com.staygrateful.core.component
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
@@ -29,27 +32,52 @@ fun <T> InfiniteLazyColumn(
     modifier: Modifier,
     items: List<T>,
     spacer: Dp = 15.dp,
+    enablePlaceholder: Boolean = false,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
     onBottomReached: suspend (InfiniteData) -> Unit,
+    placeholderContent: @Composable () -> Unit = {},
     itemContent: @Composable (Int, T) -> Unit,
 ) {
     val listState = rememberLazyListState()
     var isLoading by remember { mutableStateOf(false) }
 
-    LazyColumn(
-        modifier = modifier,
-        state = listState,
-        verticalArrangement = Arrangement.spacedBy(spacer)
-    ) {
-        items(items.size) { index ->
-            itemContent(index, items[index])
-        }
-        if (isLoading) {
-            item {
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentWidth(Alignment.CenterHorizontally)
-                )
+    Box {
+        if (isLoading && items.isEmpty()) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(contentPadding)
+            ) {
+                if(!enablePlaceholder) {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .size(29.dp)
+                    )
+                } else {
+                    placeholderContent()
+                }
+            }
+        } else {
+            LazyColumn(
+                modifier = modifier,
+                state = listState,
+                contentPadding = contentPadding,
+                verticalArrangement = Arrangement.spacedBy(spacer),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                items(items.size) { index ->
+                    itemContent(index, items[index])
+                }
+                if (isLoading) {
+                    item {
+                        CircularProgressIndicator(
+                            modifier = Modifier
+                                .padding(vertical = 25.dp)
+                                .size(29.dp)
+                        )
+                    }
+                }
             }
         }
     }

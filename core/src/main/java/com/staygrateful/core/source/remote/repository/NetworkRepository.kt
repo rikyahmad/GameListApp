@@ -4,6 +4,7 @@ import com.staygrateful.core.source.remote.model.GameResponse
 import com.staygrateful.core.source.remote.service.IApiService
 import com.staygrateful.core.source.remote.mapper.ApiResponse
 import com.staygrateful.core.source.remote.mapper.Resource
+import com.staygrateful.core.source.remote.model.DetailGameResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -18,6 +19,13 @@ class NetworkRepository @Inject constructor(
         return flow {
             emit(Resource.Loading())
             emit(safeApiCall { apiService.getGameList(page, pageSize) })
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun getDetailGame(gameId: Int): Flow<Resource<DetailGameResponse?>> {
+        return flow {
+            emit(Resource.Loading())
+            emit(safeApiCall { apiService.getDetailGame(gameId) })
         }.flowOn(Dispatchers.IO)
     }
 }

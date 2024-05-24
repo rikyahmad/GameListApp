@@ -1,6 +1,7 @@
 package com.staygrateful.feature_list.di
 
 import com.staygrateful.core.source.local.database.AppDatabase
+import com.staygrateful.core.source.local.repository.DatabaseRepository
 import com.staygrateful.core.source.remote.service.ApiService
 import com.staygrateful.feature_list.data.repository.GameRepository
 import com.staygrateful.feature_list.data.repository.GameRepositoryImpl
@@ -20,8 +21,8 @@ import dagger.hilt.android.components.ViewModelComponent
 object GetGameModule {
 
     @Provides
-    fun provideGameLocalDataSource(appDatabase: AppDatabase): GameLocalDataSource {
-        return GameLocalDataSourceImpl(appDatabase)
+    fun provideGameLocalDataSource(repository: DatabaseRepository): GameLocalDataSource {
+        return GameLocalDataSourceImpl(repository)
     }
 
     @Provides

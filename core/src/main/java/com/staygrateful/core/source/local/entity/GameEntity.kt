@@ -5,10 +5,13 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.staygrateful.core.extension.convertDateFormat
 import com.staygrateful.core.source.local.converter.Converters
 import com.staygrateful.core.source.remote.model.GameResponse
+import kotlinx.serialization.Serializable
 
 @Entity(tableName = "games", indices = [Index(value = ["gameId"], unique = true)])
+@Serializable
 @TypeConverters(Converters::class)
 data class GameEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
@@ -18,6 +21,10 @@ data class GameEntity(
     val name: String,
     @ColumnInfo(name = "released")
     val released: String,
+    @ColumnInfo(name = "description")
+    val description: String,
+    @ColumnInfo(name = "developer")
+    val developer: String,
     @ColumnInfo(name = "genres")
     val genres: List<String>,
     @ColumnInfo(name = "background_image")
@@ -30,24 +37,25 @@ data class GameEntity(
 
         other as GameEntity
 
-        return gameId == other.gameId
+        if (gameId != other.gameId) return false
+        if (name != other.name) return false
+        if (released != other.released) return false
+        if (description != other.description) return false
+        if (developer != other.developer) return false
+        if (genres != other.genres) return false
+        if (backgroundImage != other.backgroundImage) return false
+
+        return true
     }
 
     override fun hashCode(): Int {
-        return gameId.hashCode()
-    }
-
-    companion object {
-
-        fun from(game: GameResponse.Game): GameEntity {
-            return GameEntity(
-                0,
-                game.id ?: 0,
-                game.name ?: "",
-                game.released ?: "",
-                game.genres?.map { it.name ?: "" }.orEmpty(),
-                game.background_image  ?: ""
-            )
-        }
+        var result = gameId
+        result = 31 * result + name.hashCode()
+        result = 31 * result + released.hashCode()
+        result = 31 * result + description.hashCode()
+        result = 31 * result + developer.hashCode()
+        result = 31 * result + genres.hashCode()
+        result = 31 * result + backgroundImage.hashCode()
+        return result
     }
 }

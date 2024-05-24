@@ -2,6 +2,7 @@ package com.staygrateful.feature_list.data.source.mediator
 
 import androidx.paging.*
 import androidx.room.withTransaction
+import com.staygrateful.core.extension.toGameEntity
 import com.staygrateful.core.source.local.entity.GameEntity
 import com.staygrateful.feature_list.data.source.local.GameLocalDataSource
 import com.staygrateful.feature_list.data.source.remote.GameRemoteDataSource
@@ -39,14 +40,9 @@ class GameRemoteMediator @Inject constructor(
 
             val response = remoteDataSource.getGameList(loadKey, state.config.pageSize)?.results
 
-            localDataSource.database.withTransaction {
-                if(loadType == LoadType.REFRESH) {
-                    localDataSource.database.dao.clearAll()
-                }
-                val gameEntities = response?.map { GameEntity.from(it) }
-                if(!gameEntities.isNullOrEmpty()) {
-                    localDataSource.database.dao.upsertAll(gameEntities)
-                }
+            val gameEntities = response?.map { it.toGameEntity() }
+            if(!gameEntities.isNullOrEmpty()) {
+                localDataSource.clearAndInsertAll(gameEntities)
             }
 
             MediatorResult.Success(

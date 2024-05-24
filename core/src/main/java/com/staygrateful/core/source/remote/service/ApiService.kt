@@ -2,6 +2,7 @@ package com.staygrateful.core.source.remote.service
 
 import com.google.gson.Gson
 import com.staygrateful.core.BuildConfig
+import com.staygrateful.core.source.remote.model.DetailGameResponse
 import com.staygrateful.core.source.remote.model.GameResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
@@ -24,6 +25,21 @@ open class ApiService @Inject constructor(
                 parameter("page_size", pageSize)
             }.bodyAsText(Charsets.UTF_8)
             return Gson().fromJson(response, GameResponse::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
+    override suspend fun getDetailGame(gameId: Int): DetailGameResponse? {
+        try {
+            val url = "${baseUrl}games/$gameId"
+            println("Detail game response : get -> $gameId, $url, ${BuildConfig.API_KEY}")
+            val response = httpClient.get(url) {
+                parameter("key", BuildConfig.API_KEY)
+            }.bodyAsText(Charsets.UTF_8)
+            println("Detail game response : $gameId | $response")
+            return Gson().fromJson(response, DetailGameResponse::class.java)
         } catch (e: Exception) {
             e.printStackTrace()
         }

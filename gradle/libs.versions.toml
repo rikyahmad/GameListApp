@@ -32,6 +32,9 @@ viewmodelCompose = "2.8.0"
 room = "2.6.1"
 kover = "0.6.1"
 timber = "5.0.1"
+navigation = "2.8.0-beta01"
+composeAnimation = "1.7.0-beta01"
+serialization = "1.6.3"
 
 [libraries]
 # Common
@@ -39,6 +42,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json",version.ref = "serialization"}
 
 # AndroidX
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -64,6 +68,8 @@ compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 compose-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 compose-paging = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingCompose" }
+compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "composeAnimation" }
 
 # Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }

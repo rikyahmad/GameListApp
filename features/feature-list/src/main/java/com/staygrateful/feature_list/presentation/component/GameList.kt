@@ -1,9 +1,16 @@
 package com.staygrateful.feature_list.presentation.component
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,98 +32,31 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.staygrateful.core.component.GameItem
 import com.staygrateful.core.component.InfiniteData
 import com.staygrateful.core.component.InfiniteLazyColumn
 import com.staygrateful.core.source.local.entity.GameEntity
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-fun GameList(
+fun SharedTransitionScope.GameList(
     modifier: Modifier = Modifier,
     items: List<GameEntity>,
     pageSize: Int = 10,
     spacer: Dp = 15.dp,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
+    animatedVisibilityScope: AnimatedVisibilityScope,
+    onItemClick: (GameEntity) -> Unit = {},
     onBottomReached: suspend (InfiniteData) -> Unit = {},
 ) {
     InfiniteLazyColumn(
         pageSize = pageSize,
         modifier = modifier,
         items = items,
+        contentPadding = contentPadding,
         onBottomReached = onBottomReached,
         spacer = spacer
     ) { _, data ->
-        GameItem(data = data) {
-
-        }
-    }
-}
-
-@Composable
-private fun GameItem(data: GameEntity, onClick: () -> Unit = {}) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight(),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White,
-            contentColor = Color.Black
-        ),
-        shape = RoundedCornerShape(15.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 5.dp),
-    ){
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable {
-                    onClick.invoke()
-                }
-        ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(data.backgroundImage)
-                    .crossfade(true)
-                    .build(),
-                contentDescription = "Loaded Image",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-            )
-            Column(
-                modifier = Modifier
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(3.dp)
-            ) {
-                Text(
-                    text = data.name,
-                    fontSize = 17.sp,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Start)
-                )
-                Spacer(modifier = Modifier.height(1.dp))
-                Text(
-                    text = "Release Date: ${data.released}",
-                    fontSize = 13.sp,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Normal,
-                    lineHeight = 15.sp,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Start)
-                )
-                Text(
-                    text = "Genres: ${data.genres.joinToString(", ")}",
-                    fontSize = 13.sp,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Normal,
-                    lineHeight = 15.sp,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Start)
-                )
-            }
-        }
+        GameItem(data, animatedVisibilityScope, onItemClick)
     }
 }

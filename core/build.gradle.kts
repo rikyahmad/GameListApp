@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.paging)
     implementation(libs.material)
+    implementation(libs.coil)
     implementation(libs.gson)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -63,6 +64,8 @@ dependencies {
     implementation(libs.compose.ui.graphics)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
+    implementation(libs.compose.navigation)
+    implementation(libs.compose.animation)
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.test.manifest)
     androidTestImplementation(libs.compose.ui.test.junit4)
@@ -89,7 +92,6 @@ dependencies {
     ksp(libs.room.compiler)
 
     // Testing
-    //implementation(libs.test.mockk)
     implementation(libs.test.mockwebserver)
     testImplementation(libs.test.coroutines)
     testImplementation(libs.test.kotlin)

@@ -5,14 +5,11 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.staygrateful.core.source.local.converter.Converters
 import com.staygrateful.core.source.local.dao.GameDao
-import com.staygrateful.core.source.local.dao.RemoteKeyDao
 import com.staygrateful.core.source.local.entity.GameEntity
-import com.staygrateful.core.source.local.entity.RemoteKey
+import com.staygrateful.core.source.local.entity.FavoriteEntity
 
-@Database(entities = [GameEntity::class, RemoteKey::class], version = 1, exportSchema = false)
+@Database(entities = [GameEntity::class, FavoriteEntity::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract val dao: GameDao
-    abstract val remoteKeyDao: RemoteKeyDao
-
 }

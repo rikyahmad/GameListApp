@@ -6,9 +6,6 @@ import com.staygrateful.core.source.local.entity.GameEntity
 import kotlinx.coroutines.flow.Flow
 
 interface GameLocalDataSource {
-
-    val database: AppDatabase
-
     suspend fun getCount(): Int
 
     fun getItemsFlow(): Flow<List<GameEntity>>
