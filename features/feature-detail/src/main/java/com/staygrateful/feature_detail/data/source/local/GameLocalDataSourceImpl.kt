@@ -1,6 +1,6 @@
 package com.staygrateful.feature_detail.data.source.local
 
-import com.staygrateful.core.source.local.entity.FavoriteEntity
+import com.staygrateful.core.source.local.entity.FavoriteGameEntity
 import com.staygrateful.core.source.local.entity.GameEntity
 import com.staygrateful.core.source.local.repository.IDatabaseRepository
 import kotlinx.coroutines.flow.Flow
@@ -13,7 +13,7 @@ class GameLocalDataSourceImpl @Inject constructor(
         return repository.updateByGameId(gameId, developer, description)
     }
 
-    override suspend fun insertFavorite(favorite: FavoriteEntity) {
+    override suspend fun insertFavorite(favorite: FavoriteGameEntity) {
         return repository.insertFavorite(favorite)
     }
 
@@ -21,7 +21,7 @@ class GameLocalDataSourceImpl @Inject constructor(
         return repository.deleteFavoriteByGameId(gameId)
     }
 
-    override fun getFavoriteGames(): Flow<List<GameEntity>> {
+    override fun getFavoriteGames(): Flow<List<FavoriteGameEntity>> {
         return repository.getFavoriteGames()
     }
 

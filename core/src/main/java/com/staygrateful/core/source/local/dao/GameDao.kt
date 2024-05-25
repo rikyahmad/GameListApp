@@ -6,22 +6,26 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Upsert
-import com.staygrateful.core.source.local.entity.FavoriteEntity
+import com.staygrateful.core.source.local.entity.FavoriteGameEntity
 import com.staygrateful.core.source.local.entity.GameEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface GameDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFavorite(favorite: FavoriteEntity)
 
-    @Query("SELECT games.* FROM games INNER JOIN favorite ON games.gameId = favorite.gameId")
-    fun getFavoriteGames(): Flow<List<GameEntity>>
+    @Query("SELECT * FROM favorite_games ORDER BY id")
+    fun getFavoriteGames(): Flow<List<FavoriteGameEntity>>
 
-    @Query("DELETE FROM favorite WHERE gameId = :gameId")
+    @Query("SELECT favorite_games.* FROM favorite_games INNER JOIN games ON games.gameId = favorite_games.gameId")
+    fun getItemsWithFavoriteGames(): Flow<List<FavoriteGameEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE, entity = FavoriteGameEntity::class)
+    suspend fun insertFavorite(favorite: FavoriteGameEntity)
+
+    @Query("DELETE FROM favorite_games WHERE gameId = :gameId")
     suspend fun deleteFavoriteByGameId(gameId: Int)
 
-    @Query("SELECT EXISTS(SELECT 1 FROM favorite WHERE gameId = :gameId)")
+    @Query("SELECT EXISTS(SELECT 1 FROM favorite_games WHERE gameId = :gameId)")
     suspend fun isGameFavorite(gameId: Int): Boolean
 
     @Query("UPDATE games SET description = :description, developer = :developer WHERE gameId = :gameId")
@@ -39,13 +43,13 @@ interface GameDao {
     @Query("SELECT * FROM games WHERE gameId = :gameId")
     fun getItem(gameId: Int): GameEntity?
 
-    @Upsert
+    @Upsert(entity = GameEntity::class)
     suspend fun upsertAll(games: List<GameEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE, entity = GameEntity::class)
     suspend fun insertAll(games: List<GameEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE, entity = GameEntity::class)
     suspend fun insert(game: GameEntity)
 
     @Query("DELETE FROM games")

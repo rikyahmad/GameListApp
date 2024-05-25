@@ -13,8 +13,9 @@ import kotlinx.serialization.Serializable
 @Entity(tableName = "games", indices = [Index(value = ["gameId"], unique = true)])
 @Serializable
 @TypeConverters(Converters::class)
-data class GameEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+open class GameEntity(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
     @ColumnInfo(name = "gameId")
     val gameId: Int,
     @ColumnInfo(name = "name")

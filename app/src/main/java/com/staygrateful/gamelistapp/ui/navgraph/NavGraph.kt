@@ -10,13 +10,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+import com.staygrateful.core.extension.copy
+import com.staygrateful.core.extension.tryNavigate
 import com.staygrateful.core.source.local.entity.GameEntity
-import com.staygrateful.feature_list.presentation.view.GameListScreen
-import com.staygrateful.feature_list.presentation.viewmodel.GameListViewModel
 import com.staygrateful.feature_detail.presentation.view.GameDetailScreen
 import com.staygrateful.feature_detail.presentation.viewmodel.GameDetailViewModel
 import com.staygrateful.feature_favorites.presentation.view.GameFavoriteScreen
 import com.staygrateful.feature_favorites.presentation.viewmodel.GameFavoriteViewModel
+import com.staygrateful.feature_list.presentation.view.GameListScreen
+import com.staygrateful.feature_list.presentation.viewmodel.GameListViewModel
+import com.staygrateful.feature_search.presentation.view.GameSearchScreen
+import com.staygrateful.feature_search.presentation.viewmodel.GameSearchViewModel
 import kotlinx.serialization.Serializable
 
 @OptIn(ExperimentalSharedTransitionApi::class)
@@ -25,6 +29,7 @@ fun NavGraph(navController: NavHostController) {
     val gameListViewModel = viewModel<GameListViewModel>()
     val detailViewModel = viewModel<GameDetailViewModel>()
     val favoriteViewModel = viewModel<GameFavoriteViewModel>()
+    val searchViewModel = viewModel<GameSearchViewModel>()
 
     SharedTransitionLayout {
         NavHost(
@@ -37,11 +42,18 @@ fun NavGraph(navController: NavHostController) {
                     viewmodel = gameListViewModel,
                     animatedVisibilityScope = this,
                     onItemClick = { data ->
-                        navController.navigate(data.copy())
+                        navController.tryNavigate(data)
                     },
                     onFavoriteClick = {
-                        println("Favorite Clicked!")
-                        navController.navigate(FavoriteScreen)
+                        navController.tryNavigate(FavoriteScreen)
+                    },
+                    onSearchFocusChange = {
+                        if (it.isFocused) {
+                            navController.tryNavigate(SearchScreen)
+                        }
+                    },
+                    onSearchClick = {
+                        navController.tryNavigate(SearchScreen)
                     }
                 )
             }
@@ -63,7 +75,20 @@ fun NavGraph(navController: NavHostController) {
                     viewmodel = favoriteViewModel,
                     animatedVisibilityScope = this,
                     onItemClick = { data ->
-                        navController.navigate(data.copy())
+                        navController.tryNavigate(data)
+                    },
+                    onBackPressed = {
+                        navController.popBackStack()
+                    },
+                )
+            }
+
+            composable<SearchScreen> {
+                GameSearchScreen(
+                    viewmodel = searchViewModel,
+                    animatedVisibilityScope = this,
+                    onItemClick = { data ->
+                        navController.tryNavigate(data)
                     },
                     onBackPressed = {
                         navController.popBackStack()
@@ -79,3 +104,6 @@ object HomeScreen
 
 @Serializable
 object FavoriteScreen
+
+@Serializable
+object SearchScreen

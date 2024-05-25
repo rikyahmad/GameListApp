@@ -3,6 +3,7 @@ package com.staygrateful.feature_list.presentation.view
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -21,6 +22,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
@@ -46,7 +48,9 @@ fun SharedTransitionScope.GameListScreen(
     viewmodel: GameListViewModel,
     animatedVisibilityScope: AnimatedVisibilityScope,
     onItemClick: (GameEntity) -> Unit = {},
+    onSearchClick: () -> Unit = {},
     onFavoriteClick: () -> Unit = {},
+    onSearchFocusChange: (FocusState) -> Unit = {},
     onBottomReached: suspend (InfiniteData) -> Unit = {},
 ) {
     val items by viewmodel.items.collectAsState(initial = emptyList())
@@ -108,10 +112,12 @@ fun SharedTransitionScope.GameListScreen(
             SearchInput(
                 hint = "Search Games",
                 height = searchHeight,
+                animatedVisibilityScope = animatedVisibilityScope,
                 margin = PaddingValues(horizontal = padding, vertical = paddingVerticalSearch),
                 onFocusChange = { focus ->
-                    //Toast.makeText(context, "Focus Change : ${focus.isFocused}", Toast.LENGTH_SHORT).show()
-                }
+                    onSearchFocusChange.invoke(focus)
+                },
+                onLeadingClick = onSearchClick
             )
         }
     }

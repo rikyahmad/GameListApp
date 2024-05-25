@@ -1,6 +1,6 @@
 package com.staygrateful.feature_detail.data.repository
 
-import com.staygrateful.core.source.local.entity.FavoriteEntity
+import com.staygrateful.core.source.local.entity.FavoriteGameEntity
 import com.staygrateful.core.source.local.entity.GameEntity
 import com.staygrateful.core.source.remote.mapper.Resource
 import com.staygrateful.core.source.remote.model.DetailGameResponse
@@ -17,11 +17,11 @@ class GameRepositoryImpl @Inject constructor(
         return localDataSource.updateByGameId(gameId, developer, description)
     }
 
-    override suspend fun insertFavorite(favorite: FavoriteEntity) {
+    override suspend fun insertFavorite(favorite: FavoriteGameEntity) {
         return localDataSource.insertFavorite(favorite)
     }
 
-    override fun getFavoriteGames(): Flow<List<GameEntity>> {
+    override fun getFavoriteGames(): Flow<List<FavoriteGameEntity>> {
         return localDataSource.getFavoriteGames()
     }
 

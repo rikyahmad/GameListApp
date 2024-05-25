@@ -11,19 +11,19 @@ object TimberLog {
         }
     }
 
-    fun d(message: String) {
+    fun d(message: String?) {
         Timber.d(message)
     }
 
-    fun e(message: String) {
+    fun e(message: String?) {
         Timber.e(message)
     }
 
-    fun i(message: String) {
+    fun i(message: String?) {
         Timber.i(message)
     }
 
-    fun v(message: String) {
+    fun v(message: String?) {
         Timber.v(message)
     }
 }

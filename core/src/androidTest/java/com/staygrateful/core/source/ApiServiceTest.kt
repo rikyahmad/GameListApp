@@ -43,7 +43,7 @@ class ApiServiceTest {
 
     @Test
     fun getGamesSuccess() = runBlocking {
-        val response = repository.getGames(1, 5)
+        val response = repository.getGameList(1, 5)
         val result = mutableListOf<Resource<GameResponse?>>()
 
         response.collect { value ->

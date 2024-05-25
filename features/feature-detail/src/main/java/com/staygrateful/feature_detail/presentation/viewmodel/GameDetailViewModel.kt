@@ -2,7 +2,8 @@ package com.staygrateful.feature_detail.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.staygrateful.core.source.local.entity.FavoriteEntity
+import com.staygrateful.core.extension.toFavoriteEntity
+import com.staygrateful.core.source.local.entity.GameEntity
 import com.staygrateful.core.source.remote.mapper.Resource
 import com.staygrateful.core.source.remote.model.DetailGameResponse
 import com.staygrateful.feature_detail.domain.usecase.DetailGameUsecase
@@ -34,12 +35,12 @@ class GameDetailViewModel @Inject constructor(
         }
     }
 
-    fun updateFavoriteStatus(gameId: Int, isFavorite: Boolean, onResult: () -> Unit) {
+    fun updateFavoriteStatus(data: GameEntity, isFavorite: Boolean, onResult: () -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             if (isFavorite) {
-                repository.insertFavorite(FavoriteEntity(0, gameId))
+                repository.insertFavorite(data.toFavoriteEntity())
             } else {
-                repository.deleteFavoriteByGameId(gameId)
+                repository.deleteFavoriteByGameId(data.gameId)
             }
             println("Set favorite : $isFavorite")
             onResult.invoke()

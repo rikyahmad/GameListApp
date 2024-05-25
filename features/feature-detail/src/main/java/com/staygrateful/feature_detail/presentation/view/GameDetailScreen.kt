@@ -42,6 +42,8 @@ import coil.request.ImageRequest
 import com.staygrateful.core.component.CollapsingBar
 import com.staygrateful.core.component.HtmlText
 import com.staygrateful.core.component.SimpleAppBar
+import com.staygrateful.core.extension.Unknown
+import com.staygrateful.core.extension.copy
 import com.staygrateful.core.source.local.entity.GameEntity
 import com.staygrateful.core.source.remote.mapper.Resource
 import com.staygrateful.core.source.remote.model.DetailGameResponse
@@ -94,7 +96,8 @@ fun SharedTransitionScope.GameDetailScreen(
 
     CollapsingBar(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(Color.White),
         headerHeight = headerHeight,
         toolbarColor = MaterialTheme.colorScheme.primary,
         onScrollChange = { value ->
@@ -120,7 +123,7 @@ fun SharedTransitionScope.GameDetailScreen(
                 },
                 onActionClick = {
                     onUpdateFavorite.invoke(!isFavorite)
-                    viewmodel.updateFavoriteStatus(gameEntity.gameId, !isFavorite, onResult = {
+                    viewmodel.updateFavoriteStatus(gameEntity, !isFavorite, onResult = {
                         isFavorite = !isFavorite
                     })
                 }
@@ -169,7 +172,7 @@ fun GameDetails(
     ) {
         Text(
             text = data.name,
-            fontSize = 19.sp,
+            fontSize = 20.sp,
             textAlign = TextAlign.Start,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
@@ -181,12 +184,14 @@ fun GameDetails(
             modifier = Modifier.fillMaxWidth(),
             text = "Release Date: ${data.released}",
             fontSize = 14.sp,
+            lineHeight = 17.sp,
             fontWeight = FontWeight.Normal,
         )
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = "Genres: ${data.genres.joinToString(", ")}",
             fontSize = 14.sp,
+            lineHeight = 17.sp,
             fontWeight = FontWeight.Normal,
         )
         /*if (gameDetailResources is Resource.Loading) {
@@ -205,33 +210,27 @@ fun GameDetails(
             )
             return
         }*/
-        if (data.developer != "unknown") {
+        if (data.developer != Unknown) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = "Developer: ${data.developer}",
                 fontSize = 14.sp,
+                lineHeight = 17.sp,
                 fontWeight = FontWeight.Normal,
             )
         }
-        if (data.description != "unknown") {
+        if (data.description != Unknown) {
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 20.dp, bottom = 8.dp),
                 text = "Description",
                 textAlign = TextAlign.Start,
-                fontSize = 21.sp,
+                fontSize = 19.sp,
                 fontWeight = FontWeight.Bold,
-                //color = Color.Black,
             )
-            /*Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = data.description,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Normal,
-            )*/
             HtmlText(
-                data.description!!,
+                data.description,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Normal,
                 color = Color.Black,

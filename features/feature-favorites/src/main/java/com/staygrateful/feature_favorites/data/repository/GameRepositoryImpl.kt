@@ -1,6 +1,7 @@
 package com.staygrateful.feature_favorites.data.repository
 
 import androidx.paging.PagingSource
+import com.staygrateful.core.source.local.entity.FavoriteGameEntity
 import com.staygrateful.core.source.local.entity.GameEntity
 import com.staygrateful.feature_favorites.data.source.local.GameLocalDataSource
 import com.staygrateful.feature_favorites.data.source.remote.GameRemoteDataSource
@@ -12,7 +13,7 @@ class GameRepositoryImpl @Inject constructor(
     private val remoteDataSource: GameRemoteDataSource
 ) : GameRepository {
 
-    override fun getFavoriteGames(): Flow<List<GameEntity>> {
+    override fun getFavoriteGames(): Flow<List<FavoriteGameEntity>> {
         return localDataSource.getFavoriteGames()
     }
 }

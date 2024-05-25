@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.room.withTransaction
 import com.staygrateful.core.extension.merge
 import com.staygrateful.core.source.local.database.AppDatabase
-import com.staygrateful.core.source.local.entity.FavoriteEntity
+import com.staygrateful.core.source.local.entity.FavoriteGameEntity
 import com.staygrateful.core.source.local.entity.GameEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -12,11 +12,11 @@ import javax.inject.Inject
 class DatabaseRepository @Inject constructor(
     private val appDatabase: AppDatabase
 ) : IDatabaseRepository {
-    override suspend fun insertFavorite(favorite: FavoriteEntity) {
-        return appDatabase.dao.insertFavorite(favorite)
+    override suspend fun insertFavorite(favorite: FavoriteGameEntity) {
+        appDatabase.dao.insertFavorite(favorite)
     }
 
-    override fun getFavoriteGames(): Flow<List<GameEntity>> {
+    override fun getFavoriteGames(): Flow<List<FavoriteGameEntity>> {
         return appDatabase.dao.getFavoriteGames()
     }
 

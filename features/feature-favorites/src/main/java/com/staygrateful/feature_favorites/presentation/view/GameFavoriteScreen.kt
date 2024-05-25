@@ -33,6 +33,8 @@ import com.staygrateful.core.component.GameItem
 import com.staygrateful.core.component.GameList
 import com.staygrateful.core.component.InfiniteData
 import com.staygrateful.core.component.SimpleAppBar
+import com.staygrateful.core.extension.toGameEntity
+import com.staygrateful.core.source.local.entity.FavoriteGameEntity
 import com.staygrateful.core.source.local.entity.GameEntity
 import com.staygrateful.core.theme.LightRippleTheme
 import com.staygrateful.feature_favorites.presentation.viewmodel.GameFavoriteViewModel
@@ -81,15 +83,6 @@ fun SharedTransitionScope.GameFavoriteScreen(
             )
         }
     ) { innerPadding ->
-        /*LazyColumn(modifier = Modifier
-            .fillMaxSize()
-            .padding(innerPadding)) {
-            items(favoriteGames.itemCount) { index ->
-                favoriteGames[index]?.let {
-                    GameItem(it, animatedVisibilityScope, onItemClick)
-                }
-            }
-        }*/
         Box(
             modifier = Modifier.padding(innerPadding),
         ) {
