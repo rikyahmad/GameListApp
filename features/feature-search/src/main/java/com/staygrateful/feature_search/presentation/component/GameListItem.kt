@@ -1,14 +1,11 @@
 package com.staygrateful.feature_search.presentation.component
 
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,16 +20,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
-import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.network.local.entity.GameEntity
 import com.staygrateful.core.theme.ColorBackground
+import com.staygrateful.feature_search.R
 
 @Composable
 fun GameListItem(index: Int, game: GameEntity, onItemClick: (GameEntity) -> Unit) {
-    if(index > 0) {
+    if (index > 0) {
         Spacer(
             modifier = Modifier
                 .height(1.dp)
@@ -59,7 +57,7 @@ fun GameListItem(index: Int, game: GameEntity, onItemClick: (GameEntity) -> Unit
                 .memoryCacheKey(game.backgroundImage)
                 .crossfade(true)
                 .build(),
-            contentDescription = "Loaded Image",
+            contentDescription = stringResource(R.string.desc_image),
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .background(Color.LightGray)
@@ -72,11 +70,11 @@ fun GameListItem(index: Int, game: GameEntity, onItemClick: (GameEntity) -> Unit
         ) {
             Text(text = game.name, style = MaterialTheme.typography.titleMedium)
             Text(
-                text = "Release Date: ${game.released}",
+                text = stringResource(R.string.game_release_date, game.released),
                 style = MaterialTheme.typography.bodyMedium
             )
             Text(
-                text = "Genres: ${game.genres.joinToString(", ")}",
+                text = stringResource(R.string.game_genres, game.genres.joinToString(", ")),
                 style = MaterialTheme.typography.bodyMedium
             )
         }

@@ -49,7 +49,7 @@ fun <T> InfiniteLazyColumn(
                     .fillMaxSize()
                     .padding(contentPadding)
             ) {
-                if(!enablePlaceholder) {
+                if (!enablePlaceholder) {
                     CircularProgressIndicator(
                         modifier = Modifier
                             .align(Alignment.Center)
@@ -83,7 +83,7 @@ fun <T> InfiniteLazyColumn(
         }
     }
 
-    if(initialLoad) {
+    if (initialLoad) {
         LaunchedEffect(Unit) {
             withContext(Dispatchers.IO) {
                 if (isLoading) return@withContext

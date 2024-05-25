@@ -20,21 +20,20 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.R
+import com.staygrateful.core.network.local.entity.GameEntity
 import com.staygrateful.core.theme.ColorItemSelected
 
 @OptIn(ExperimentalSharedTransitionApi::class, ExperimentalFoundationApi::class)
@@ -84,7 +83,12 @@ fun SharedTransitionScope.GameItem(
                     .fillMaxWidth()
                     .aspectRatio(6 / 3f)
                     .sharedElement(
-                        state = rememberSharedContentState(key = "image/${data.gameId}"),
+                        state = rememberSharedContentState(
+                            key = stringResource(
+                                R.string.key_image,
+                                data.gameId
+                            )
+                        ),
                         animatedVisibilityScope = animatedVisibilityScope,
                         boundsTransform = { _, _ ->
                             tween(durationMillis = 300)
@@ -107,7 +111,7 @@ fun SharedTransitionScope.GameItem(
                 )
                 Spacer(modifier = Modifier.height(1.dp))
                 Text(
-                    text = "Release Date: ${data.released}",
+                    text = stringResource(R.string.game_release_date, data.released),
                     fontSize = 13.sp,
                     textAlign = TextAlign.Start,
                     fontWeight = FontWeight.Normal,
@@ -117,7 +121,7 @@ fun SharedTransitionScope.GameItem(
                         .align(Alignment.Start)
                 )
                 Text(
-                    text = "Genres: ${data.genres.joinToString(", ")}",
+                    text = stringResource(R.string.game_genres, data.genres.joinToString(", ")),
                     fontSize = 13.sp,
                     textAlign = TextAlign.Start,
                     fontWeight = FontWeight.Normal,

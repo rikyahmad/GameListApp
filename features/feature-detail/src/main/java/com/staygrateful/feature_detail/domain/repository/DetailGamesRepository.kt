@@ -1,16 +1,15 @@
 package com.staygrateful.feature_detail.domain.repository
 
-import com.staygrateful.core.source.local.entity.FavoriteGameEntity
-import com.staygrateful.core.source.local.entity.GameEntity
-import com.staygrateful.core.source.remote.mapper.Resource
-import com.staygrateful.core.source.remote.model.DetailGameResponse
-import com.staygrateful.feature_detail.data.repository.GameRepository
+import com.staygrateful.core.network.local.entity.FavoriteGameEntity
+import com.staygrateful.core.network.remote.mapper.Resource
+import com.staygrateful.core.network.remote.model.DetailGameResponse
+import com.staygrateful.feature_detail.data.repository.IDetailRepository
 import com.staygrateful.feature_detail.domain.usecase.DetailGameUsecase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class DetailGamesRepository @Inject constructor(
-    private val repository: GameRepository
+    private val repository: IDetailRepository
 ) : DetailGameUsecase {
     override suspend fun insertFavorite(favorite: FavoriteGameEntity) {
         return repository.insertFavorite(favorite)

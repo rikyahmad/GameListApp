@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_favorite_games">FAVORITE GAMES</string>
+    <string name="error_title_favorite_games">No favorite games</string>
+    <string name="error_message_favorite_games">Add your first favorite games</string>
+</resources>

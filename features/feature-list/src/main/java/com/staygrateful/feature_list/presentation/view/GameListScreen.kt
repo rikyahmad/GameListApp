@@ -35,6 +35,7 @@ import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,9 +45,10 @@ import com.staygrateful.core.component.InfiniteState
 import com.staygrateful.core.component.SearchInput
 import com.staygrateful.core.component.SimpleAppBar
 import com.staygrateful.core.extension.showWithScope
-import com.staygrateful.core.source.local.entity.GameEntity
-import com.staygrateful.core.source.remote.mapper.Resource
+import com.staygrateful.core.network.local.entity.GameEntity
+import com.staygrateful.core.network.remote.mapper.Resource
 import com.staygrateful.core.theme.LightRippleTheme
+import com.staygrateful.feature_list.R
 import com.staygrateful.feature_list.presentation.viewmodel.GameListViewModel
 
 @OptIn(ExperimentalSharedTransitionApi::class, ExperimentalMaterial3Api::class)
@@ -65,13 +67,13 @@ fun SharedTransitionScope.GameListScreen(
     onSearchFocusChange: (FocusState) -> Unit = {},
     onBottomReached: suspend (InfiniteData) -> Unit = {},
 ) {
+    val context = LocalContext.current
     val isConnected by viewmodel.isConnected.collectAsState()
     val items by viewmodel.items.collectAsState(initial = emptyList())
     val result by viewmodel.result.collectAsState()
     val pullRefreshState = rememberPullToRefreshState()
     val snackBarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
-    val context = LocalContext.current
 
     Scaffold(
         snackbarHost = {
@@ -97,7 +99,7 @@ fun SharedTransitionScope.GameListScreen(
                 LocalRippleTheme provides LightRippleTheme,
                 content = {
                     SimpleAppBar(
-                        title = "RAWG GAMES",
+                        title = stringResource(R.string.title_rawg_games),
                         actionIconSize = 40.dp,
                         fontSize = 18.sp,
                         actionIcon = Icons.Default.Favorite,
@@ -170,17 +172,20 @@ fun SharedTransitionScope.GameListScreen(
 
     LaunchedEffect(result) {
         when (result) {
+            is Resource.None -> {}
             is Resource.Loading -> {}
             is Resource.Success -> {}
             is Resource.Error -> {
-                snackBarHostState.showWithScope(coroutineScope, "Error, ${result.message}")
+                snackBarHostState.showWithScope(coroutineScope,
+                    context.getString(R.string.error_message, result.message))
             }
         }
     }
 
     LaunchedEffect(isConnected) {
         if (!isConnected) {
-            snackBarHostState.showWithScope(coroutineScope, "No Internet Connection")
+            snackBarHostState.showWithScope(coroutineScope,
+                context.getString(R.string.error_internet_connection))
         }
     }
 }

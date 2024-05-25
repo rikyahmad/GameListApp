@@ -2,10 +2,10 @@ package com.staygrateful.core.di
 
 import android.content.Context
 import androidx.room.Room
-import com.staygrateful.core.source.local.dao.GameDao
-import com.staygrateful.core.source.local.database.AppDatabase
-import com.staygrateful.core.source.local.repository.DatabaseRepository
-import com.staygrateful.core.source.local.repository.IDatabaseRepository
+import com.staygrateful.core.network.local.dao.GameDao
+import com.staygrateful.core.network.local.database.AppDatabase
+import com.staygrateful.core.network.local.repository.DatabaseRepository
+import com.staygrateful.core.network.local.repository.IDatabaseRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

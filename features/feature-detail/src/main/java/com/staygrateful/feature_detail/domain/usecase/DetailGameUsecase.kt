@@ -1,9 +1,8 @@
 package com.staygrateful.feature_detail.domain.usecase
 
-import com.staygrateful.core.source.local.entity.FavoriteGameEntity
-import com.staygrateful.core.source.local.entity.GameEntity
-import com.staygrateful.core.source.remote.mapper.Resource
-import com.staygrateful.core.source.remote.model.DetailGameResponse
+import com.staygrateful.core.network.local.entity.FavoriteGameEntity
+import com.staygrateful.core.network.remote.mapper.Resource
+import com.staygrateful.core.network.remote.model.DetailGameResponse
 import kotlinx.coroutines.flow.Flow
 
 interface DetailGameUsecase {

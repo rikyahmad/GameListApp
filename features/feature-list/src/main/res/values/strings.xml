@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_rawg_games">RAWG GAMES</string>
+    <string name="error_internet_connection">No Internet Connection</string>
+    <string name="error_message">Error: %1$s</string>
+</resources>

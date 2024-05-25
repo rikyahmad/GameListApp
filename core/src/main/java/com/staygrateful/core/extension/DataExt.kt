@@ -1,9 +1,9 @@
 package com.staygrateful.core.extension
 
-import com.staygrateful.core.source.local.entity.FavoriteGameEntity
-import com.staygrateful.core.source.local.entity.GameEntity
-import com.staygrateful.core.source.remote.model.GameResponse
-import com.staygrateful.core.source.remote.model.SearchGameResponse
+import com.staygrateful.core.network.local.entity.FavoriteGameEntity
+import com.staygrateful.core.network.local.entity.GameEntity
+import com.staygrateful.core.network.remote.model.GameResponse
+import com.staygrateful.core.network.remote.model.SearchGameResponse
 
 const val Unknown = "Unknown"
 
@@ -16,7 +16,7 @@ fun GameResponse.Game.toGameEntity(): GameEntity {
         Unknown,
         Unknown,
         this.genres?.map { it.name ?: Unknown } ?: listOf(Unknown),
-        this.background_image  ?: Unknown,
+        this.background_image ?: Unknown,
     )
 }
 
@@ -29,7 +29,7 @@ fun SearchGameResponse.Game.toGameEntity(): GameEntity {
         Unknown,
         Unknown,
         this.genres?.map { it.name ?: Unknown } ?: listOf(Unknown),
-        this.background_image  ?: Unknown,
+        this.background_image ?: Unknown,
     )
 }
 

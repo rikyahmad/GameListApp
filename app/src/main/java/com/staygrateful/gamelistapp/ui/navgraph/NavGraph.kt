@@ -10,9 +10,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
-import com.staygrateful.core.extension.copy
 import com.staygrateful.core.extension.tryNavigate
-import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.network.local.entity.GameEntity
 import com.staygrateful.feature_detail.presentation.view.GameDetailScreen
 import com.staygrateful.feature_detail.presentation.viewmodel.GameDetailViewModel
 import com.staygrateful.feature_favorites.presentation.view.GameFavoriteScreen

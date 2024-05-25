@@ -4,11 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.staygrateful.core.extension.toGameEntity
 import com.staygrateful.core.helper.INetworkMonitor
-import com.staygrateful.core.helper.NetworkMonitor
-import com.staygrateful.core.source.local.entity.GameEntity
-import com.staygrateful.core.source.remote.mapper.Resource
-import com.staygrateful.core.source.remote.model.GameResponse
-import com.staygrateful.feature_list.domain.usecase.GetGameUsecase
+import com.staygrateful.core.network.local.entity.GameEntity
+import com.staygrateful.core.network.remote.mapper.Resource
+import com.staygrateful.core.network.remote.model.GameResponse
+import com.staygrateful.feature_list.domain.usecase.ListGameUsecase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GameListViewModel @Inject constructor(
-    private val repository: GetGameUsecase,
+    private val repository: ListGameUsecase,
     private val networkMonitor: INetworkMonitor
 ) : ViewModel() {
 
@@ -34,12 +33,10 @@ class GameListViewModel @Inject constructor(
         pageSize: Int,
         clearCache: Boolean,
     ) {
-        println("Collect data at page : $page")
         repository.getRemoteItems(page, pageSize).collect { result ->
             _result.value = result
             when (result) {
                 is Resource.Success -> {
-                    println("Success")
                     val data = result.data?.results.orEmpty()
                     if (data.isNotEmpty()) {
                         val mapList = data.map { it.toGameEntity() }
@@ -51,13 +48,11 @@ class GameListViewModel @Inject constructor(
                     }
                 }
 
-                is Resource.Loading -> {
-                    println("Loading")
-                }
+                is Resource.Loading -> {}
 
-                is Resource.Error -> {
-                    println("Error")
-                }
+                is Resource.Error -> {}
+
+                is Resource.None -> {}
             }
         }
     }

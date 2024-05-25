@@ -20,18 +20,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.staygrateful.core.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SimpleAppBar(
     modifier: Modifier = Modifier,
-    title: String,
+    title: String = "",
     onActionClick: () -> Unit = {},
     onLeadingClick: () -> Unit = {},
     leadingIconSize: Dp = 49.dp,
@@ -78,7 +80,11 @@ fun SimpleAppBar(
                             .background(iconBackgroundColor, shape = CircleShape),
                         onClick = onLeadingClick
                     ) {
-                        Icon(leadingIcon, contentDescription = "Menu", tint = leadingIconColor)
+                        Icon(
+                            leadingIcon,
+                            contentDescription = stringResource(R.string.desc_menu),
+                            tint = leadingIconColor
+                        )
                     }
                 }
             }
@@ -94,7 +100,11 @@ fun SimpleAppBar(
                             .background(iconBackgroundColor, shape = CircleShape),
                         onClick = onActionClick
                     ) {
-                        Icon(actionIcon, contentDescription = "Action", tint = actionIconColor)
+                        Icon(
+                            actionIcon,
+                            contentDescription = stringResource(R.string.desc_action),
+                            tint = actionIconColor
+                        )
                     }
                 }
             }

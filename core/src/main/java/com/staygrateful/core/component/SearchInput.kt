@@ -44,6 +44,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -52,6 +53,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.staygrateful.core.R
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
@@ -92,7 +94,7 @@ fun SharedTransitionScope.SearchInput(
             .fillMaxWidth()
             .height(height)
             .sharedElement(
-                state = rememberSharedContentState(key = "search"),
+                state = rememberSharedContentState(key = stringResource(R.string.key_search)),
                 animatedVisibilityScope = animatedVisibilityScope,
                 boundsTransform = { _, _ ->
                     tween(durationMillis = 300)
@@ -120,7 +122,7 @@ fun SharedTransitionScope.SearchInput(
                 ) {
                     Icon(
                         imageVector = leadingIcon,
-                        contentDescription = "Search Icon",
+                        contentDescription = stringResource(R.string.desc_search_icon),
                         tint = iconColor
                     )
                 }
@@ -143,7 +145,7 @@ fun SharedTransitionScope.SearchInput(
                             .background(Color.LightGray.copy(0.3f), CircleShape)
                             .padding(3.dp),
                         imageVector = Icons.Default.Clear,
-                        contentDescription = "Search Clear",
+                        contentDescription = stringResource(R.string.desc_search_clear),
                         tint = iconColor
                     )
                 }

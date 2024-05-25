@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_internet_connection">No Internet Connection</string>
+    <string name="key_image">image/%1$s</string>
+    <string name="game_release_date">Release Date: %1$s</string>
+    <string name="game_genres">Genres: %1$s</string>
+    <string name="key_search">search</string>
+    <string name="desc_search_icon">Search Icon</string>
+    <string name="desc_search_clear">Search Clear</string>
+    <string name="desc_menu">Menu</string>
+    <string name="desc_action">Action</string>
+</resources>

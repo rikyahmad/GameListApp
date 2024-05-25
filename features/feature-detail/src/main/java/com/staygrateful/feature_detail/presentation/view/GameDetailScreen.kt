@@ -1,7 +1,5 @@
 package com.staygrateful.feature_detail.presentation.view
 
-import android.widget.Toast
-import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
@@ -15,8 +13,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -25,13 +25,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -44,9 +45,10 @@ import com.staygrateful.core.component.HtmlText
 import com.staygrateful.core.component.SimpleAppBar
 import com.staygrateful.core.extension.Unknown
 import com.staygrateful.core.extension.copy
-import com.staygrateful.core.source.local.entity.GameEntity
-import com.staygrateful.core.source.remote.mapper.Resource
-import com.staygrateful.core.source.remote.model.DetailGameResponse
+import com.staygrateful.core.extension.showWithScope
+import com.staygrateful.core.network.local.entity.GameEntity
+import com.staygrateful.core.network.remote.mapper.Resource
+import com.staygrateful.feature_detail.R
 import com.staygrateful.feature_detail.presentation.component.DetailPlaceholder
 import com.staygrateful.feature_detail.presentation.viewmodel.GameDetailViewModel
 
@@ -60,9 +62,11 @@ fun SharedTransitionScope.GameDetailScreen(
     onBackPressed: () -> Unit,
     onUpdateFavorite: (Boolean) -> Unit = {},
 ) {
-
+    val isConnected by viewmodel.isConnected.collectAsState()
+    val snackBarHostState = remember { SnackbarHostState() }
+    val gameDetailResources by viewmodel.gameDetail.collectAsState()
+    val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
-    val configuration = LocalConfiguration.current
 
     var collapsingValue by remember {
         mutableFloatStateOf(0f)
@@ -76,15 +80,21 @@ fun SharedTransitionScope.GameDetailScreen(
         mutableStateOf(data)
     }
 
-    val gameDetailResources by viewmodel.gameDetail.collectAsState()
-
-    if(gameDetailResources is Resource.Success) {
-        val detailData = gameDetailResources.data
-        if(detailData?.id == data.gameId) {
-            gameEntity = data.copy(
-                description = detailData.description ?: "unknown",
-                developer = detailData.developersName ?: "unknown",
-            )
+    LaunchedEffect(gameDetailResources) {
+        if (gameDetailResources is Resource.Success) {
+            val detailData = gameDetailResources.data
+            if (detailData?.id == data.gameId) {
+                gameEntity = data.copy(
+                    description = detailData.description ?: Unknown,
+                    developer = detailData.developersName ?: Unknown,
+                )
+            }
+        } else if (gameDetailResources is Resource.Error) {
+            snackBarHostState.showSnackbar(
+                context.getString(
+                    R.string.error_message,
+                    gameDetailResources.message
+                ))
         }
     }
 
@@ -99,16 +109,27 @@ fun SharedTransitionScope.GameDetailScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White),
+        snackbarState = snackBarHostState,
+        snackbarHost = {
+            SnackbarHost(
+                hostState = snackBarHostState,
+                snackbar = { data ->
+                    Snackbar(
+                        snackbarData = data,
+                        containerColor = Color.Red,
+                        contentColor = Color.White
+                    )
+                }
+            )
+        },
         headerHeight = headerHeight,
         toolbarColor = MaterialTheme.colorScheme.primary,
         onScrollChange = { value ->
             collapsingValue = value
-            println("Collapsing value : $value")
         },
         contentToolbar = {
             SimpleAppBar(
                 modifier = Modifier.fillMaxSize(),
-                title = "",
                 leadingIcon = Icons.AutoMirrored.Filled.ArrowBack,
                 actionIcon = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
                 containerColor = Color.Transparent,
@@ -138,13 +159,18 @@ fun SharedTransitionScope.GameDetailScreen(
                     .memoryCacheKey(gameEntity.backgroundImage)
                     .crossfade(true)
                     .build(),
-                contentDescription = "Loaded Image",
+                contentDescription = stringResource(R.string.desc_detail_image),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .background(Color.LightGray)
                     .fillMaxSize()
                     .sharedElement(
-                        state = rememberSharedContentState(key = "image/${gameEntity.gameId}"),
+                        state = rememberSharedContentState(
+                            key = stringResource(
+                                R.string.key_image,
+                                gameEntity.gameId
+                            )
+                        ),
                         animatedVisibilityScope = animatedVisibilityScope,
                         boundsTransform = { _, _ ->
                             tween(durationMillis = 300)
@@ -155,6 +181,13 @@ fun SharedTransitionScope.GameDetailScreen(
     ) {
         item {
             GameDetails(data = gameEntity)
+        }
+    }
+
+    LaunchedEffect(isConnected) {
+        if (!isConnected) {
+            snackBarHostState.showWithScope(coroutineScope,
+                context.getString(R.string.error_internet_connection))
         }
     }
 }
@@ -183,20 +216,21 @@ fun GameDetails(
         )
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = "Release Date: ${data.released}",
+            text = stringResource(R.string.game_release_date, data.released),
             fontSize = 14.sp,
             lineHeight = 17.sp,
             fontWeight = FontWeight.Normal,
         )
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = "Genres: ${data.genres.joinToString(", ")}",
+            text = stringResource(R.string.game_genres, data.genres.joinToString(", ")),
             fontSize = 14.sp,
             lineHeight = 17.sp,
             fontWeight = FontWeight.Normal,
         )
         if (data.developer.isEmpty() || data.developer == Unknown ||
-            data.description.isEmpty() || data.description == Unknown) {
+            data.description.isEmpty() || data.description == Unknown
+        ) {
             DetailPlaceholder(
                 modifier = Modifier.padding(top = 20.dp)
             )
@@ -204,7 +238,7 @@ fun GameDetails(
         }
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = "Developer: ${data.developer}",
+            text = stringResource(R.string.game_developer, data.developer),
             fontSize = 14.sp,
             lineHeight = 17.sp,
             fontWeight = FontWeight.Normal,
@@ -213,7 +247,7 @@ fun GameDetails(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 20.dp, bottom = 8.dp),
-            text = "Description",
+            text = stringResource(R.string.title_description),
             textAlign = TextAlign.Start,
             fontSize = 19.sp,
             fontWeight = FontWeight.Bold,

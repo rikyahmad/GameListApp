@@ -1,8 +1,6 @@
 package com.staygrateful.feature_favorites.domain.usecase
 
-import androidx.paging.PagingSource
-import com.staygrateful.core.source.local.entity.FavoriteGameEntity
-import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.network.local.entity.FavoriteGameEntity
 import kotlinx.coroutines.flow.Flow
 
 interface FavoriteGameUsecase {

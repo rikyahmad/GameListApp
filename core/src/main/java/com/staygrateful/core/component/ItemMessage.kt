@@ -1,5 +1,6 @@
 package com.staygrateful.core.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,15 +25,18 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun ItemMessage(
+    modifier: Modifier = Modifier,
     title: String,
     description: String,
     iconSize: Dp = 80.dp,
+    color: Color = Color.White,
     iconColor: Color = Color.Gray,
     icon: ImageVector? = null,
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
+            .background(color)
             .padding(20.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally

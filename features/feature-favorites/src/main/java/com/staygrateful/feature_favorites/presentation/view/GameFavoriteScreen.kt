@@ -21,19 +21,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.staygrateful.core.component.ItemMessage
 import com.staygrateful.core.component.GameList
 import com.staygrateful.core.component.InfiniteData
+import com.staygrateful.core.component.ItemMessage
 import com.staygrateful.core.component.SimpleAppBar
-import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.network.local.entity.GameEntity
 import com.staygrateful.core.theme.LightRippleTheme
+import com.staygrateful.feature_favorites.R
 import com.staygrateful.feature_favorites.presentation.viewmodel.GameFavoriteViewModel
 
 
@@ -50,7 +50,7 @@ fun SharedTransitionScope.GameFavoriteScreen(
     onBottomReached: suspend (InfiniteData) -> Unit = {},
 ) {
 
-    val items by viewmodel.items.collectAsState(initial = emptyList())
+    val items by viewmodel.items.collectAsState(initial = listOf(GameEntity.initial()))
 
     Scaffold(
         modifier = Modifier
@@ -64,7 +64,7 @@ fun SharedTransitionScope.GameFavoriteScreen(
                 LocalRippleTheme provides LightRippleTheme,
                 content = {
                     SimpleAppBar(
-                        title = "FAVORITE GAMES",
+                        title = stringResource(R.string.title_favorite_games),
                         leadingIconSize = 45.dp,
                         fontSize = 17.sp,
                         leadingIcon = Icons.AutoMirrored.Filled.ArrowBack,
@@ -88,6 +88,14 @@ fun SharedTransitionScope.GameFavoriteScreen(
         Box(
             modifier = Modifier.padding(innerPadding),
         ) {
+            if (items.isEmpty()) {
+                ItemMessage(
+                    color = Color.White,
+                    iconColor = MaterialTheme.colorScheme.primary,
+                    title = stringResource(R.string.error_title_favorite_games),
+                    description = stringResource(R.string.error_message_favorite_games)
+                )
+            }
             GameList(
                 pageSize = pageSize,
                 modifier = modifier
@@ -105,13 +113,6 @@ fun SharedTransitionScope.GameFavoriteScreen(
                     onBottomReached.invoke(data)
                 }
             )
-            if(items.isEmpty()) {
-                ItemMessage(
-                    iconColor = MaterialTheme.colorScheme.primary,
-                    title = "No games favorite",
-                    description = "Add your games favorite"
-                )
-            }
         }
     }
 }

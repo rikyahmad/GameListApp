@@ -11,16 +11,17 @@ import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-interface INetworkMonitor{
+interface INetworkMonitor {
     val isConnected: StateFlow<Boolean>
     fun startMonitoring()
     fun stopMonitoring()
 }
 
 @Singleton
-class NetworkMonitor @Inject constructor(@ApplicationContext context: Context): INetworkMonitor {
+class NetworkMonitor @Inject constructor(@ApplicationContext context: Context) : INetworkMonitor {
 
-    private val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    private val connectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     private val _isConnected = MutableStateFlow(false)
     override val isConnected: StateFlow<Boolean> = _isConnected
 

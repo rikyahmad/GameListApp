@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="desc_image">Image</string>
+    <string name="game_release_date">Release Date: %1$s</string>
+    <string name="game_genres">Genres: %1$s</string>
+    <string name="hint_search_games">Search Games</string>
+    <string name="error_title_no_data_found">No data found</string>
+    <string name="error_message_no_data_found">No data found for query</string>
+    <string name="error_message">Error: %1$s</string>
+</resources>

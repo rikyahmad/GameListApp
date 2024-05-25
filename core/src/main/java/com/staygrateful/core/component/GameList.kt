@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.network.local.entity.GameEntity
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
@@ -24,6 +24,8 @@ fun SharedTransitionScope.GameList(
     onItemLongClick: (GameEntity, Boolean) -> Unit = { a, b -> },
     onBottomReached: suspend (InfiniteData) -> Unit = {},
 ) {
+    if (items.firstOrNull()?.gameId == -1) return
+
     InfiniteLazyColumn(
         pageSize = pageSize,
         modifier = modifier,

@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +19,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -27,9 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -37,6 +35,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CollapsingBar(
     modifier: Modifier = Modifier,
+    snackbarState: SnackbarHostState,
+    snackbarHost: @Composable () -> Unit = {},
     state: LazyListState = rememberLazyListState(),
     contentPadding: PaddingValues = PaddingValues(0.dp),
     reverseLayout: Boolean = false,
@@ -50,8 +50,8 @@ fun CollapsingBar(
     toolbarHeight: Dp = 70.dp,
     headerHeight: Dp = 300.dp,
     onScrollChange: (Float) -> Unit = {},
-    contentToolbar: @Composable BoxScope.() -> Unit = {},
-    contentHeader: @Composable BoxScope.() -> Unit = {},
+    contentToolbar: @Composable() (BoxScope.() -> Unit) = {},
+    contentHeader: @Composable() (BoxScope.() -> Unit) = {},
     content: LazyListScope.() -> Unit = {},
 ) {
 
@@ -65,6 +65,7 @@ fun CollapsingBar(
             .windowInsetsPadding(
                 WindowInsets.safeDrawing
             ),
+        snackbarHost = snackbarHost
     ) { innerPadding ->
         LazyColumn(
             modifier = modifier.padding(innerPadding),
@@ -87,9 +88,6 @@ fun CollapsingBar(
                             }
                         )
                         .graphicsLayer {
-                            /*scrolledY += state.firstVisibleItemScrollOffset - previousOffset
-                            translationY = scrolledY * 0.5f
-                            previousOffset = state.firstVisibleItemScrollOffset*/
                             val heightInPx =
                                 if (safeArea) headerHeight.toPx() else headerHeight.toPx() - toolbarHeight.toPx()
                             val firstVisibleIndex = state.firstVisibleItemIndex
@@ -98,8 +96,6 @@ fun CollapsingBar(
                             val value = (offset / heightInPx)
                             val distance = heightInPx.toInt() - offset
                             val translateOffsetY = (heightInPx * scaleY) - distance
-                            /*scaleY = distance / heightInPx
-                            scaleX = scaleY*/
                             translationY = (value * heightInPx) - (translateOffsetY / 2f)
                             collapsingValue = (1 - value).coerceIn(0f, 1f)
                             onScrollChange.invoke(collapsingValue)

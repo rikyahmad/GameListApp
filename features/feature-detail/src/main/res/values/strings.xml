@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_description">Description</string>
+    <string name="desc_detail_image">Detail Image</string>
+    <string name="game_release_date">Release Date: %1$s</string>
+    <string name="game_genres">Genres: %1$s</string>
+    <string name="game_developer">Developer: %1$s</string>
+    <string name="error_internet_connection">No Internet Connection</string>
+    <string name="error_message">Error: %1$s</string>
+    <string name="key_image">image/%1$s</string>
+</resources>
