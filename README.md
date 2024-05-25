@@ -4,7 +4,7 @@ This is an Simple Android application that displays a list of games using the RA
 
 ## Screenshots
 
-<img src="screenshots/preview.gif" width="170" />     <img src="screenshots/detail_screen.png" width="170" />     <img src="screenshots/favorite_screen" width="170" />     <img src="screenshots/search_screen.png" width="170" />
+<img src="screenshots/home_screen.png" width="170" />     <img src="screenshots/detail_screen.png" width="170" />     <img src="screenshots/favorite_screen.png" width="170" />     <img src="screenshots/search_screen.png" width="170" />
 
 ## Features
 
@@ -12,7 +12,6 @@ This is an Simple Android application that displays a list of games using the RA
 2. **Detail Screen**: Shows details of the selected game.
 3. **Search Screen**: Allows users to search for games by name.
 4. **Favorite Screen**: Displays a list of games marked as favorites by the user.
-
 
 ## Requirements
 
@@ -50,6 +49,11 @@ This is an Simple Android application that displays a list of games using the RA
 2. **Detail Screen**: Tap on any game in the list to view its details.
 3. **Search Screen**: Use the search functionality to find specific games by name.
 4. **Favorite Screen**: Mark games as favorites and view them in the favorites section.
+
+## Download
+
+You can download the latest release APK from the following link:
+[Download APK](https://github.com/rikyahmad/GameListApp/blob/main/app/release/app-release.apk)
 
 ## License
 

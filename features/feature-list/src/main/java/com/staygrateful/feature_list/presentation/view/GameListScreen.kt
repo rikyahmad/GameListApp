@@ -39,6 +39,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.staygrateful.core.component.GameItemPlaceholder
 import com.staygrateful.core.component.GameList
 import com.staygrateful.core.component.InfiniteData
 import com.staygrateful.core.component.InfiniteState
@@ -142,6 +143,16 @@ fun SharedTransitionScope.GameListScreen(
                     pullRefreshState.endRefresh()
                 }
             )
+            if (items.isEmpty() && result is Resource.Loading) {
+                GameItemPlaceholder(
+                    contentPadding = PaddingValues(
+                        start = padding,
+                        end = padding,
+                        top = searchHeight + (paddingVerticalSearch * 2),
+                        bottom = padding
+                    )
+                )
+            }
             SearchInput(
                 hint = "Search Games",
                 height = searchHeight,
@@ -161,13 +172,17 @@ fun SharedTransitionScope.GameListScreen(
         }
     }
 
-    LaunchedEffect(pullRefreshState.isRefreshing) {
-        viewmodel.collect(
-            1,
-            pageSize,
-            true,
-        )
+    suspend fun refreshData() {
+        viewmodel.collect(1, pageSize, true)
         pullRefreshState.endRefresh()
+    }
+
+    LaunchedEffect(pullRefreshState.isRefreshing) {
+        refreshData()
+    }
+
+    LaunchedEffect(items) {
+        if (items.isEmpty()) refreshData()
     }
 
     LaunchedEffect(result) {
@@ -176,16 +191,20 @@ fun SharedTransitionScope.GameListScreen(
             is Resource.Loading -> {}
             is Resource.Success -> {}
             is Resource.Error -> {
-                snackBarHostState.showWithScope(coroutineScope,
-                    context.getString(R.string.error_message, result.message))
+                snackBarHostState.showWithScope(
+                    coroutineScope,
+                    context.getString(R.string.error_message, result.message)
+                )
             }
         }
     }
 
     LaunchedEffect(isConnected) {
         if (!isConnected) {
-            snackBarHostState.showWithScope(coroutineScope,
-                context.getString(R.string.error_internet_connection))
+            snackBarHostState.showWithScope(
+                coroutineScope,
+                context.getString(R.string.error_internet_connection)
+            )
         }
     }
 }

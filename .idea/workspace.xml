@@ -9,113 +9,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8ea0cef-dc0c-4861-b5ef-6839017ee1c6" name="Changes" comment="Add and update common feature and dependencies&#10;! update database query in DAO&#10;+ add placeholder component for game details&#10;+ add delete favorite feature in favorite screen&#10;+ add pull to refresh feature on game list screen&#10;+ add connection failed or no internet connection handling">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/release/baselineProfiles/0/app-release.dm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/release/baselineProfiles/1/app-release.dm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/release/output-metadata.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/staygrateful/gamelistapp/NavGraphTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/androidTest/java/com/staygrateful/core/extension/DisplayExtensionsTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/androidTest/java/com/staygrateful/core/local/GameDaoTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/androidTest/java/com/staygrateful/core/network/ApiServiceTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/utils/DelayUtil.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/test/java/com/staygrateful/core/extension/DateExtensionsTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/feature-detail/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/feature-favorites/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/feature-list/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/feature-search/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/androidTestResultsUserPreferences.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/androidTestResultsUserPreferences.xml" afterDir="false" />
+    <list default="true" id="a8ea0cef-dc0c-4861-b5ef-6839017ee1c6" name="Changes" comment="Add License">
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/GameItemPlaceholder.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/detail_screen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/favorite_screen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/home_screen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/search_screen.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/staygrateful/gamelistapp/ExampleInstrumentedTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/App.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/App.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/ui/main/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/ui/main/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/ui/navgraph/NavGraph.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/ui/navgraph/NavGraph.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/ui/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/ui/theme/Theme.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/ui/theme/Type.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/staygrateful/gamelistapp/ui/theme/Type.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/staygrateful/gamelistapp/ExampleUnitTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/androidTest/java/com/staygrateful/core/ExampleInstrumentedTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/androidTest/java/com/staygrateful/core/source/ApiServiceTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/androidTest/java/com/staygrateful/core/network/ApiListGameTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/CollapsingBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/CollapsingBar.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/GameItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/GameItem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/GameList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/GameList.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/InfiniteLazyColumn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/InfiniteLazyColumn.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/ItemMessage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/ItemMessage.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/SearchInput.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/SearchInput.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/SimpleAppBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component/SimpleAppBar.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/di/AppModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/di/AppModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/di/NetworkModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/di/NetworkModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/extension/ConvertExt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/extension/ConvertExt.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/extension/DataExt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/extension/DataExt.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/helper/NetworkMonitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/helper/NetworkMonitor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/local/converter/Converters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/local/converter/Converters.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/local/dao/GameDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/local/dao/GameDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/local/database/AppDatabase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/local/database/AppDatabase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/local/entity/FavoriteGameEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/local/entity/FavoriteGameEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/local/entity/GameEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/local/entity/GameEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/local/repository/DatabaseRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/local/repository/DatabaseRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/local/repository/IDatabaseRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/local/repository/IDatabaseRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/mapper/ApiResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/remote/mapper/ApiResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/mapper/Resource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/remote/mapper/Resource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/model/DetailGameResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/remote/model/DetailGameResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/model/GameResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/remote/model/GameResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/model/SearchGameResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/remote/model/SearchGameResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/repository/INetworkRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/remote/repository/INetworkRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/repository/NetworkRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/remote/repository/NetworkRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/service/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/remote/service/ApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/remote/service/IApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/network/remote/service/IApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/test/java/com/staygrateful/core/ExampleUnitTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/repository/GameRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/repository/IDetailRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/repository/GameRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/repository/DetailRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/source/local/GameLocalDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/source/local/IDetailLocalDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/source/local/GameLocalDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/source/local/DetailLocalDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/source/remote/GameRemoteDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/source/remote/IDetailRemoteDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/source/remote/GameRemoteDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/source/remote/DetailRemoteDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/di/DetailGameModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/di/DetailModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/domain/repository/DetailGamesRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/domain/repository/DetailGamesRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/domain/usecase/DetailGameUsecase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/domain/usecase/DetailGameUsecase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/presentation/view/GameDetailScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/presentation/view/GameDetailScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/presentation/viewmodel/GameDetailViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/presentation/viewmodel/GameDetailViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/data/repository/GameRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/data/repository/IFavoriteRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/data/repository/GameRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/data/repository/FavoriteRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/data/source/local/GameLocalDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/data/source/local/IFavoriteLocalDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/data/source/local/GameLocalDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/data/source/local/FavoriteLocalDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/data/source/remote/GameRemoteDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/data/source/remote/IFavoriteRemoteDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/data/source/remote/GameRemoteDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/data/source/remote/FavoriteRemoteDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/di/FavoriteGameModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/di/FavoriteModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/domain/repository/FavoriteGamesRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/domain/repository/FavoriteGamesRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/domain/usecase/FavoriteGameUsecase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/domain/usecase/FavoriteGameUsecase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/presentation/view/GameFavoriteScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/presentation/view/GameFavoriteScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/presentation/viewmodel/GameFavoriteViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-favorites/src/main/java/com/staygrateful/feature_favorites/presentation/viewmodel/GameFavoriteViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/repository/GameRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/repository/IListRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/repository/GameRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/repository/ListRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/source/local/GameLocalDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/source/local/IListLocalDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/source/local/GameLocalDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/source/local/ListLocalDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/source/remote/GameRemoteDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/source/remote/IListRemoteDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/source/remote/GameRemoteDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/data/source/remote/ListRemoteDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/di/GetGameModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/di/ListModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/repository/GetGamesRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/repository/ListGamesRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/usecase/GetGameUsecase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/domain/usecase/ListGameUsecase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/presentation/view/GameListScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/presentation/view/GameListScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/presentation/viewmodel/GameListViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-list/src/main/java/com/staygrateful/feature_list/presentation/viewmodel/GameListViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/data/repository/GameRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/data/repository/ISearchRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/data/repository/GameRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/data/repository/SearchRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/data/source/local/GameLocalDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/data/source/local/ISearchLocalDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/data/source/local/GameLocalDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/data/source/local/SearchLocalDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/data/source/remote/GameRemoteDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/data/source/remote/ISearchRemoteDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/data/source/remote/GameRemoteDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/data/source/remote/SearchRemoteDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/di/SearchGameModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/di/SearchModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/domain/repository/SearchGamesRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/domain/repository/SearchGamesRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/domain/usecase/SearchGameUsecase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/domain/usecase/SearchGameUsecase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/presentation/component/GameListItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/presentation/component/GameListItem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/presentation/view/GameSearchScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/presentation/view/GameSearchScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/presentation/viewmodel/GameSearchViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/feature-search/src/main/java/com/staygrateful/feature_search/presentation/viewmodel/GameSearchViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,6 +69,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -199,7 +106,7 @@
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/riky/AndroidStudioProjects/GameListApp/core/src/main/java/com/staygrateful/core/theme",
+    "last_opened_file_path": "/Users/riky/AndroidStudioProjects/GameListApp/core/src/main/java/com/staygrateful/core/component",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "show.migrate.to.gradle.popup": "false"
   },
@@ -211,11 +118,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/theme" />
       <recent name="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/source/local" />
       <recent name="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail" />
-      <recent name="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/source/remote" />
-      <recent name="$PROJECT_DIR$/features/feature-detail/src/main/java/com/staygrateful/feature_detail/data/source/local" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/core/src/main/java/com/staygrateful/core/component" />
@@ -533,7 +440,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716625783978</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Refactoring all feature module">
+      <option name="closed" value="true" />
+      <created>1716639414914</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1716639414914</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add License">
+      <option name="closed" value="true" />
+      <created>1716639975533</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1716639975534</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -563,6 +486,8 @@
     <MESSAGE value="Update feature-favorite structure and dependencies&#10;+ Add domain and data layers to fetch favorite game list in feature-favorite module&#10;! Refactor dependency structure&#10;+ Add paging in LazyColumn&#10;+ Add paging with Room Database&#10;! Update favorite screen UI" />
     <MESSAGE value="Update feature-search structure and dependencies&#10;! Update favorite games table&#10;! Update feature-favorite repository and data&#10;+ Add feature-search game" />
     <MESSAGE value="Add and update common feature and dependencies&#10;! update database query in DAO&#10;+ add placeholder component for game details&#10;+ add delete favorite feature in favorite screen&#10;+ add pull to refresh feature on game list screen&#10;+ add connection failed or no internet connection handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add and update common feature and dependencies&#10;! update database query in DAO&#10;+ add placeholder component for game details&#10;+ add delete favorite feature in favorite screen&#10;+ add pull to refresh feature on game list screen&#10;+ add connection failed or no internet connection handling" />
+    <MESSAGE value="Refactoring all feature module" />
+    <MESSAGE value="Add License" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add License" />
   </component>
 </project>
