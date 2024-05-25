@@ -1,13 +1,15 @@
 package com.staygrateful.feature_list.data.source.remote
 
+import com.staygrateful.core.source.remote.mapper.Resource
 import com.staygrateful.core.source.remote.model.GameResponse
-import com.staygrateful.core.source.remote.service.ApiService
+import com.staygrateful.core.source.remote.repository.INetworkRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GameRemoteDataSourceImpl @Inject constructor(
-    private val apiService: ApiService
+    private val repository: INetworkRepository
 ) : GameRemoteDataSource {
-    override suspend fun getGameList(page: Int, pageSize: Int): GameResponse? {
-        return apiService.getGameList(page, pageSize)
+    override suspend fun getRemoteItems(page: Int, pageSize: Int): Flow<Resource<GameResponse?>> {
+        return repository.getGameList(page, pageSize)
     }
 }

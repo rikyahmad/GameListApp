@@ -11,7 +11,12 @@ import javax.inject.Inject
 class GameLocalDataSourceImpl @Inject constructor(
     private val repository: IDatabaseRepository
 ) : GameLocalDataSource {
+
     override fun getFavoriteGames(): Flow<List<FavoriteGameEntity>> {
         return repository.getFavoriteGames()
+    }
+
+    override suspend fun deleteFavoriteByGameIds(gameIds: List<Int>) {
+        repository.deleteFavoritesByGameIds(gameIds)
     }
 }

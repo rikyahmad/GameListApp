@@ -32,6 +32,7 @@ fun <T> InfiniteLazyColumn(
     modifier: Modifier,
     items: List<T>,
     spacer: Dp = 15.dp,
+    initialLoad: Boolean = false,
     enablePlaceholder: Boolean = false,
     contentPadding: PaddingValues = PaddingValues(0.dp),
     onBottomReached: suspend (InfiniteData) -> Unit,
@@ -73,8 +74,8 @@ fun <T> InfiniteLazyColumn(
                     item {
                         CircularProgressIndicator(
                             modifier = Modifier
-                                .padding(vertical = 25.dp)
-                                .size(29.dp)
+                                .padding(vertical = 20.dp)
+                                .size(25.dp)
                         )
                     }
                 }
@@ -82,14 +83,16 @@ fun <T> InfiniteLazyColumn(
         }
     }
 
-    LaunchedEffect(Unit) {
-        withContext(Dispatchers.IO) {
-            if (isLoading) return@withContext
-            isLoading = true
-            onProgressState {
-                onBottomReached.invoke(InfiniteData(1, pageSize, InfiniteState.Refresh))
+    if(initialLoad) {
+        LaunchedEffect(Unit) {
+            withContext(Dispatchers.IO) {
+                if (isLoading) return@withContext
+                isLoading = true
+                onProgressState {
+                    onBottomReached.invoke(InfiniteData(1, pageSize, InfiniteState.Refresh))
+                }
+                isLoading = false
             }
-            isLoading = false
         }
     }
 

@@ -54,4 +54,5 @@ class ApiServiceTest {
         assertEquals(true, result[0] is Resource.Loading)
         assertEquals(true, result[1] is Resource.Success)
     }
+
 }

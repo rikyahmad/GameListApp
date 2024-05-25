@@ -2,12 +2,13 @@ package com.staygrateful.feature_list.data.repository
 
 import androidx.paging.PagingData
 import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.source.remote.mapper.Resource
 import com.staygrateful.core.source.remote.model.GameResponse
 import kotlinx.coroutines.flow.Flow
 
-interface GameRepository  {
+interface GameRepository {
 
-    suspend fun getRemoteItems(page: Int, pageSize: Int): List<GameResponse.Game>
+    suspend fun getRemoteItems(page: Int, pageSize: Int): Flow<Resource<GameResponse?>>
 
     fun getPagingItems(): Flow<PagingData<GameEntity>>
 

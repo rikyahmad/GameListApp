@@ -4,8 +4,9 @@ import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,6 +20,9 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,20 +35,24 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.theme.ColorItemSelected
 
-@OptIn(ExperimentalSharedTransitionApi::class)
+@OptIn(ExperimentalSharedTransitionApi::class, ExperimentalFoundationApi::class)
 @Composable
 fun SharedTransitionScope.GameItem(
+    selected: Boolean = false,
     data: GameEntity,
     animatedVisibilityScope: AnimatedVisibilityScope,
-    onItemClick: (GameEntity) -> Unit = {}
+    onItemClick: (GameEntity) -> Unit = {},
+    onItemLongClick: (GameEntity, Boolean) -> Unit = { a, b -> },
 ) {
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight(),
         colors = CardDefaults.cardColors(
-            containerColor = Color.White,
+            containerColor = if(selected) ColorItemSelected else Color.White,
             contentColor = Color.Black
         ),
         shape = RoundedCornerShape(15.dp),
@@ -53,9 +61,14 @@ fun SharedTransitionScope.GameItem(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable {
-                    onItemClick.invoke(data)
-                }
+                .combinedClickable(
+                    onClick = {
+                        onItemClick.invoke(data)
+                    },
+                    onLongClick = {
+                        onItemLongClick.invoke(data, !selected)
+                    }
+                )
         ) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)

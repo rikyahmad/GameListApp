@@ -2,6 +2,7 @@ package com.staygrateful.feature_list.di
 
 import com.staygrateful.core.source.local.database.AppDatabase
 import com.staygrateful.core.source.local.repository.DatabaseRepository
+import com.staygrateful.core.source.remote.repository.INetworkRepository
 import com.staygrateful.core.source.remote.service.ApiService
 import com.staygrateful.feature_list.data.repository.GameRepository
 import com.staygrateful.feature_list.data.repository.GameRepositoryImpl
@@ -26,8 +27,8 @@ object GetGameModule {
     }
 
     @Provides
-    fun provideGameRemoteDataSource(apiService: ApiService): GameRemoteDataSource {
-        return GameRemoteDataSourceImpl(apiService)
+    fun provideGameRemoteDataSource(repository: INetworkRepository): GameRemoteDataSource {
+        return GameRemoteDataSourceImpl(repository)
     }
 
     @Provides

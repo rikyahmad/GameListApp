@@ -8,6 +8,5 @@ import kotlinx.coroutines.flow.Flow
 interface GameLocalDataSource {
 
     fun getFavoriteGames(): Flow<List<FavoriteGameEntity>>
-
-    //fun getPagingFavorite(): PagingSource<Int, GameEntity>
+    suspend fun deleteFavoriteByGameIds(gameIds: List<Int>)
 }

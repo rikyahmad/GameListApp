@@ -16,4 +16,8 @@ class GameRepositoryImpl @Inject constructor(
     override fun getFavoriteGames(): Flow<List<FavoriteGameEntity>> {
         return localDataSource.getFavoriteGames()
     }
+
+    override suspend fun deleteFavoriteByGameIds(gameIds: List<Int>) {
+        localDataSource.deleteFavoriteByGameIds(gameIds)
+    }
 }

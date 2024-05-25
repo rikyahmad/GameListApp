@@ -22,6 +22,9 @@ interface GameDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE, entity = FavoriteGameEntity::class)
     suspend fun insertFavorite(favorite: FavoriteGameEntity)
 
+    @Query("DELETE FROM favorite_games WHERE gameId IN (:gameIds)")
+    suspend fun deleteFavoritesByGameIds(gameIds: List<Int>)
+
     @Query("DELETE FROM favorite_games WHERE gameId = :gameId")
     suspend fun deleteFavoriteByGameId(gameId: Int)
 

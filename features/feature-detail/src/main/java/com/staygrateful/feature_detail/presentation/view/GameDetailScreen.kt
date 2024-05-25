@@ -47,6 +47,7 @@ import com.staygrateful.core.extension.copy
 import com.staygrateful.core.source.local.entity.GameEntity
 import com.staygrateful.core.source.remote.mapper.Resource
 import com.staygrateful.core.source.remote.model.DetailGameResponse
+import com.staygrateful.feature_detail.presentation.component.DetailPlaceholder
 import com.staygrateful.feature_detail.presentation.viewmodel.GameDetailViewModel
 
 @OptIn(ExperimentalSharedTransitionApi::class)
@@ -194,48 +195,35 @@ fun GameDetails(
             lineHeight = 17.sp,
             fontWeight = FontWeight.Normal,
         )
-        /*if (gameDetailResources is Resource.Loading) {
-            CircularProgressIndicator(
-                modifier = Modifier.padding(vertical = 20.dp)
+        if (data.developer.isEmpty() || data.developer == Unknown ||
+            data.description.isEmpty() || data.description == Unknown) {
+            DetailPlaceholder(
+                modifier = Modifier.padding(top = 20.dp)
             )
             return
-        }*/
-        /*if (gameDetailResources is Resource.Error) {
-            Text(
-                text = "Error Data Not Loaded",
-                textAlign = TextAlign.Center,
-                fontSize = 21.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Red,
-            )
-            return
-        }*/
-        if (data.developer != Unknown) {
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = "Developer: ${data.developer}",
-                fontSize = 14.sp,
-                lineHeight = 17.sp,
-                fontWeight = FontWeight.Normal,
-            )
         }
-        if (data.description != Unknown) {
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 20.dp, bottom = 8.dp),
-                text = "Description",
-                textAlign = TextAlign.Start,
-                fontSize = 19.sp,
-                fontWeight = FontWeight.Bold,
-            )
-            HtmlText(
-                data.description,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Normal,
-                color = Color.Black,
-                textAlign = TextAlign.Left,
-            )
-        }
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = "Developer: ${data.developer}",
+            fontSize = 14.sp,
+            lineHeight = 17.sp,
+            fontWeight = FontWeight.Normal,
+        )
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 20.dp, bottom = 8.dp),
+            text = "Description",
+            textAlign = TextAlign.Start,
+            fontSize = 19.sp,
+            fontWeight = FontWeight.Bold,
+        )
+        HtmlText(
+            data.description,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Normal,
+            color = Color.Black,
+            textAlign = TextAlign.Left,
+        )
     }
 }

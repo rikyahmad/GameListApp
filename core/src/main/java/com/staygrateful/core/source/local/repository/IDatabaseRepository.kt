@@ -10,6 +10,8 @@ interface IDatabaseRepository {
     suspend fun insertFavorite(favorite: FavoriteGameEntity)
     fun getFavoriteGames(): Flow<List<FavoriteGameEntity>>
     suspend fun deleteFavoriteByGameId(gameId: Int)
+    suspend fun deleteFavoritesByGameIds(gameIds: List<Int>)
+
     suspend fun isGameFavorite(gameId: Int): Boolean
     fun getItemsFlow(): Flow<List<GameEntity>>
     fun getPagingItems(): PagingSource<Int, GameEntity>

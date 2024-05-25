@@ -11,10 +11,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -22,19 +21,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.paging.compose.collectAsLazyPagingItems
-import com.staygrateful.core.component.GameItem
+import com.staygrateful.core.component.ItemMessage
 import com.staygrateful.core.component.GameList
 import com.staygrateful.core.component.InfiniteData
 import com.staygrateful.core.component.SimpleAppBar
-import com.staygrateful.core.extension.toGameEntity
-import com.staygrateful.core.source.local.entity.FavoriteGameEntity
 import com.staygrateful.core.source.local.entity.GameEntity
 import com.staygrateful.core.theme.LightRippleTheme
 import com.staygrateful.feature_favorites.presentation.viewmodel.GameFavoriteViewModel
@@ -55,8 +52,6 @@ fun SharedTransitionScope.GameFavoriteScreen(
 
     val items by viewmodel.items.collectAsState(initial = emptyList())
 
-    val context = LocalContext.current
-
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -71,13 +66,20 @@ fun SharedTransitionScope.GameFavoriteScreen(
                     SimpleAppBar(
                         title = "FAVORITE GAMES",
                         leadingIconSize = 45.dp,
-                        fontSize = 18.sp,
+                        fontSize = 17.sp,
                         leadingIcon = Icons.AutoMirrored.Filled.ArrowBack,
                         leadingIconColor = Color.White,
+                        actionIcon = if (viewmodel.selectedItems.isEmpty()) null else Icons.Default.Delete,
+                        actionIconSize = 45.dp,
+                        actionIconColor = Color.White,
                         containerColor = MaterialTheme.colorScheme.primary,
                         onLeadingClick = {
                             onBackPressed.invoke()
-                        }
+                        },
+                        onActionClick = {
+                            viewmodel.deleteItems(viewmodel.selectedItems.toList())
+                            viewmodel.selectedItems.clear()
+                        },
                     )
                 }
             )
@@ -91,19 +93,25 @@ fun SharedTransitionScope.GameFavoriteScreen(
                 modifier = modifier
                     .background(Color.White),
                 items = items,
+                selectedItems = viewmodel.selectedItems,
                 contentPadding = PaddingValues(padding),
                 spacer = padding,
                 animatedVisibilityScope = animatedVisibilityScope,
                 onItemClick = onItemClick,
+                onItemLongClick = { data, selected ->
+                    viewmodel.onSelectedUpdate(data, selected)
+                },
                 onBottomReached = { data ->
                     onBottomReached.invoke(data)
-                    /*viewmodel.collect(
-                        data.nextPage,
-                        data.pageSize,
-                        data.state == InfiniteState.Refresh
-                    )*/
                 }
             )
+            if(items.isEmpty()) {
+                ItemMessage(
+                    iconColor = MaterialTheme.colorScheme.primary,
+                    title = "No games favorite",
+                    description = "Add your games favorite"
+                )
+            }
         }
     }
 }

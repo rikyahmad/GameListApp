@@ -2,6 +2,7 @@ package com.staygrateful.feature_list.domain.repository
 
 import androidx.paging.PagingData
 import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.source.remote.mapper.Resource
 import com.staygrateful.core.source.remote.model.GameResponse
 import com.staygrateful.feature_list.data.repository.GameRepository
 import com.staygrateful.feature_list.domain.usecase.GetGameUsecase
@@ -20,7 +21,7 @@ class GetGamesRepository @Inject constructor(
         return repository.getLocalItemsFlow()
     }
 
-    override suspend fun getRemoteItems(page: Int, pageSize: Int): List<GameResponse.Game> {
+    override suspend fun getRemoteItems(page: Int, pageSize: Int): Flow<Resource<GameResponse?>> {
         return repository.getRemoteItems(page, pageSize)
     }
 

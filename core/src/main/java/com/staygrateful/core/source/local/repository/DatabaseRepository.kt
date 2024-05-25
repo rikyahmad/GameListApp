@@ -24,6 +24,10 @@ class DatabaseRepository @Inject constructor(
         return appDatabase.dao.deleteFavoriteByGameId(gameId)
     }
 
+    override suspend fun deleteFavoritesByGameIds(gameIds: List<Int>) {
+        return appDatabase.dao.deleteFavoritesByGameIds(gameIds)
+    }
+
     override suspend fun isGameFavorite(gameId: Int): Boolean {
         return appDatabase.dao.isGameFavorite(gameId)
     }
