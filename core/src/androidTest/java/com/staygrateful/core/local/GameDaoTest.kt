@@ -4,10 +4,10 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import com.staygrateful.core.network.local.dao.GameDao
-import com.staygrateful.core.network.local.database.AppDatabase
-import com.staygrateful.core.network.local.entity.FavoriteGameEntity
-import com.staygrateful.core.network.local.entity.GameEntity
+import com.staygrateful.core.source.local.dao.GameDao
+import com.staygrateful.core.source.local.database.AppDatabase
+import com.staygrateful.core.source.local.entity.FavoriteGameEntity
+import com.staygrateful.core.source.local.entity.GameEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest

@@ -1,7 +1,7 @@
 package com.staygrateful.feature_detail.data.source.local
 
-import com.staygrateful.core.network.local.entity.FavoriteGameEntity
-import com.staygrateful.core.network.local.repository.IDatabaseRepository
+import com.staygrateful.core.source.local.entity.FavoriteGameEntity
+import com.staygrateful.core.source.local.repository.IDatabaseRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

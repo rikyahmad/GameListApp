@@ -4,9 +4,9 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.staygrateful.core.network.local.entity.GameEntity
-import com.staygrateful.core.network.remote.mapper.Resource
-import com.staygrateful.core.network.remote.model.GameResponse
+import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.source.remote.mapper.Resource
+import com.staygrateful.core.source.remote.model.GameResponse
 import com.staygrateful.feature_list.data.source.local.IListLocalDataSource
 import com.staygrateful.feature_list.data.source.remote.IListRemoteDataSource
 import kotlinx.coroutines.flow.Flow

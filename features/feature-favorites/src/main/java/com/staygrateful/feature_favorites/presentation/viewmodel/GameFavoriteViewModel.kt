@@ -4,8 +4,10 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.staygrateful.core.extension.toGameEntity
-import com.staygrateful.core.network.local.entity.FavoriteGameEntity
-import com.staygrateful.core.network.local.entity.GameEntity
+import com.staygrateful.core.extension.toGameModel
+import com.staygrateful.core.model.GameModel
+import com.staygrateful.core.source.local.entity.FavoriteGameEntity
+import com.staygrateful.core.source.local.entity.GameEntity
 import com.staygrateful.feature_favorites.domain.usecase.FavoriteGameUsecase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -21,22 +23,22 @@ class GameFavoriteViewModel @Inject constructor(
 
     private val favoriteItems: Flow<List<FavoriteGameEntity>> = repository.getFavoriteGames()
 
-    val selectedItems = mutableStateListOf<GameEntity>()
+    val selectedItems = mutableStateListOf<GameModel>()
 
-    val items: Flow<List<GameEntity>> = favoriteItems.map { favoriteGames ->
+    val items: Flow<List<GameModel>> = favoriteItems.map { favoriteGames ->
         favoriteGames.map { favoriteGame ->
-            favoriteGame.toGameEntity()
+            favoriteGame.toGameModel()
         }
     }
 
-    fun deleteItems(selectedItems: List<GameEntity>) {
+    fun deleteItems(selectedItems: List<GameModel>) {
         if (selectedItems.isEmpty()) return
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteFavoriteByGameIds(selectedItems.map { it.gameId })
         }
     }
 
-    fun onSelectedUpdate(data: GameEntity, selected: Boolean) {
+    fun onSelectedUpdate(data: GameModel, selected: Boolean) {
         if (selected) {
             selectedItems.add(data)
         } else {

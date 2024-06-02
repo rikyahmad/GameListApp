@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kover)
 }
 
 android {
@@ -18,7 +19,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.staygrateful.gamelistapp.CustomTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -41,6 +42,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {
@@ -54,17 +56,14 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
     implementation(project(":features:feature-list"))
     implementation(project(":features:feature-search"))
     implementation(project(":features:feature-detail"))
     implementation(project(":features:feature-favorites"))
 
-    implementation(libs.androidx.paging)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.coil)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
     testImplementation(libs.junit)
@@ -72,7 +71,6 @@ dependencies {
     // Compose
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.activity)
-    implementation(libs.compose.paging)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.graphics)
     implementation(libs.compose.ui.tooling.preview)
@@ -86,11 +84,14 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
-    implementation(libs.hilt.test)
+    androidTestImplementation(libs.hilt.test)
     ksp(libs.hilt.compiler)
 
     // Room
     implementation(libs.room.ktx)
-    ksp(libs.room.compiler)
     testImplementation(libs.room.testing)
+    ksp(libs.room.compiler)
+
+    // Timber
+    implementation(libs.timber)
 }

@@ -46,10 +46,11 @@ import com.staygrateful.core.component.InfiniteState
 import com.staygrateful.core.component.SearchInput
 import com.staygrateful.core.component.SimpleAppBar
 import com.staygrateful.core.extension.showWithScope
-import com.staygrateful.core.network.local.entity.GameEntity
-import com.staygrateful.core.network.remote.mapper.Resource
+import com.staygrateful.core.source.remote.mapper.Resource
 import com.staygrateful.core.theme.LightRippleTheme
 import com.staygrateful.feature_list.R
+import com.staygrateful.feature_list.domain.model.GameListModel
+import com.staygrateful.feature_list.external.extension.toGameListModel
 import com.staygrateful.feature_list.presentation.viewmodel.GameListViewModel
 
 @OptIn(ExperimentalSharedTransitionApi::class, ExperimentalMaterial3Api::class)
@@ -62,7 +63,7 @@ fun SharedTransitionScope.GameListScreen(
     paddingVerticalSearch: Dp = 20.dp,
     viewmodel: GameListViewModel,
     animatedVisibilityScope: AnimatedVisibilityScope,
-    onItemClick: (GameEntity) -> Unit = {},
+    onItemClick: (GameListModel) -> Unit = {},
     onSearchClick: () -> Unit = {},
     onFavoriteClick: () -> Unit = {},
     onSearchFocusChange: (FocusState) -> Unit = {},
@@ -132,7 +133,9 @@ fun SharedTransitionScope.GameListScreen(
                 ),
                 spacer = padding,
                 animatedVisibilityScope = animatedVisibilityScope,
-                onItemClick = onItemClick,
+                onItemClick = { data ->
+                    onItemClick.invoke(data.toGameListModel())
+                },
                 onBottomReached = { data ->
                     onBottomReached.invoke(data)
                     viewmodel.collect(

@@ -1,7 +1,7 @@
 package com.staygrateful.feature_favorites.di
 
-import com.staygrateful.core.network.local.repository.DatabaseRepository
-import com.staygrateful.core.network.remote.service.ApiService
+import com.staygrateful.core.source.local.repository.DatabaseRepository
+import com.staygrateful.core.source.remote.service.ApiService
 import com.staygrateful.feature_favorites.data.repository.IFavoriteRepository
 import com.staygrateful.feature_favorites.data.repository.FavoriteRepository
 import com.staygrateful.feature_favorites.data.source.local.IFavoriteLocalDataSource

@@ -33,17 +33,17 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.staygrateful.core.R
-import com.staygrateful.core.network.local.entity.GameEntity
+import com.staygrateful.core.model.GameModel
 import com.staygrateful.core.theme.ColorItemSelected
 
 @OptIn(ExperimentalSharedTransitionApi::class, ExperimentalFoundationApi::class)
 @Composable
 fun SharedTransitionScope.GameItem(
     selected: Boolean = false,
-    data: GameEntity,
+    data: GameModel,
     animatedVisibilityScope: AnimatedVisibilityScope,
-    onItemClick: (GameEntity) -> Unit = {},
-    onItemLongClick: (GameEntity, Boolean) -> Unit = { a, b -> },
+    onItemClick: (GameModel) -> Unit = {},
+    onItemLongClick: (GameModel, Boolean) -> Unit = { a, b -> },
 ) {
 
     Card(
@@ -51,7 +51,7 @@ fun SharedTransitionScope.GameItem(
             .fillMaxWidth()
             .wrapContentHeight(),
         colors = CardDefaults.cardColors(
-            containerColor = if(selected) ColorItemSelected else Color.White,
+            containerColor = if (selected) ColorItemSelected else Color.White,
             contentColor = Color.Black
         ),
         shape = RoundedCornerShape(15.dp),
@@ -100,36 +100,42 @@ fun SharedTransitionScope.GameItem(
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(3.dp)
             ) {
-                Text(
-                    text = data.name,
-                    fontSize = 17.sp,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Start)
-                )
+                if (data.name != null)
+                    Text(
+                        text = data.name,
+                        fontSize = 17.sp,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.Start)
+                    )
                 Spacer(modifier = Modifier.height(1.dp))
-                Text(
-                    text = stringResource(R.string.game_release_date, data.released),
-                    fontSize = 13.sp,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Normal,
-                    lineHeight = 15.sp,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Start)
-                )
-                Text(
-                    text = stringResource(R.string.game_genres, data.genres.joinToString(", ")),
-                    fontSize = 13.sp,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Normal,
-                    lineHeight = 15.sp,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Start)
-                )
+                if (data.released != null)
+                    Text(
+                        text = stringResource(R.string.game_release_date, data.released),
+                        fontSize = 13.sp,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Normal,
+                        lineHeight = 15.sp,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.Start)
+                    )
+                if (data.genres != null)
+                    Text(
+                        text = stringResource(
+                            R.string.game_genres,
+                            data.genres.joinToString(", ")
+                        ),
+                        fontSize = 13.sp,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Normal,
+                        lineHeight = 15.sp,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.Start)
+                    )
             }
         }
     }

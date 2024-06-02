@@ -3,10 +3,10 @@ package com.staygrateful.core.di
 import android.content.Context
 import com.staygrateful.core.helper.INetworkMonitor
 import com.staygrateful.core.helper.NetworkMonitor
-import com.staygrateful.core.network.remote.repository.INetworkRepository
-import com.staygrateful.core.network.remote.repository.NetworkRepository
-import com.staygrateful.core.network.remote.service.ApiService
-import com.staygrateful.core.network.remote.service.IApiService
+import com.staygrateful.core.source.remote.repository.INetworkRepository
+import com.staygrateful.core.source.remote.repository.NetworkRepository
+import com.staygrateful.core.source.remote.service.ApiService
+import com.staygrateful.core.source.remote.service.IApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

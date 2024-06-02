@@ -31,9 +31,12 @@ import com.staygrateful.core.component.GameList
 import com.staygrateful.core.component.InfiniteData
 import com.staygrateful.core.component.ItemMessage
 import com.staygrateful.core.component.SimpleAppBar
-import com.staygrateful.core.network.local.entity.GameEntity
+import com.staygrateful.core.model.GameModel
+import com.staygrateful.core.source.local.entity.GameEntity
 import com.staygrateful.core.theme.LightRippleTheme
 import com.staygrateful.feature_favorites.R
+import com.staygrateful.feature_favorites.domain.model.GameFavoriteModel
+import com.staygrateful.feature_favorites.external.extension.toGameFavoriteModel
 import com.staygrateful.feature_favorites.presentation.viewmodel.GameFavoriteViewModel
 
 
@@ -45,12 +48,12 @@ fun SharedTransitionScope.GameFavoriteScreen(
     padding: Dp = 25.dp,
     viewmodel: GameFavoriteViewModel,
     animatedVisibilityScope: AnimatedVisibilityScope,
-    onItemClick: (GameEntity) -> Unit = {},
+    onItemClick: (GameFavoriteModel) -> Unit = {},
     onBackPressed: () -> Unit = {},
     onBottomReached: suspend (InfiniteData) -> Unit = {},
 ) {
 
-    val items by viewmodel.items.collectAsState(initial = listOf(GameEntity.initial()))
+    val items by viewmodel.items.collectAsState(initial = listOf(GameModel.initial()))
 
     Scaffold(
         modifier = Modifier
@@ -105,7 +108,9 @@ fun SharedTransitionScope.GameFavoriteScreen(
                 contentPadding = PaddingValues(padding),
                 spacer = padding,
                 animatedVisibilityScope = animatedVisibilityScope,
-                onItemClick = onItemClick,
+                onItemClick = { data ->
+                    onItemClick.invoke(data.toGameFavoriteModel())
+                },
                 onItemLongClick = { data, selected ->
                     viewmodel.onSelectedUpdate(data, selected)
                 },

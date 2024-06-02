@@ -1,6 +1,6 @@
 package com.staygrateful.feature_favorites.data.repository
 
-import com.staygrateful.core.network.local.entity.FavoriteGameEntity
+import com.staygrateful.core.source.local.entity.FavoriteGameEntity
 import com.staygrateful.feature_favorites.data.source.local.IFavoriteLocalDataSource
 import com.staygrateful.feature_favorites.data.source.remote.IFavoriteRemoteDataSource
 import kotlinx.coroutines.flow.Flow

@@ -1,7 +1,7 @@
 package com.staygrateful.feature_detail.di
 
-import com.staygrateful.core.network.local.repository.IDatabaseRepository
-import com.staygrateful.core.network.remote.repository.INetworkRepository
+import com.staygrateful.core.source.local.repository.IDatabaseRepository
+import com.staygrateful.core.source.remote.repository.INetworkRepository
 import com.staygrateful.feature_detail.data.repository.DetailRepository
 import com.staygrateful.feature_detail.data.repository.IDetailRepository
 import com.staygrateful.feature_detail.data.source.local.DetailLocalDataSource

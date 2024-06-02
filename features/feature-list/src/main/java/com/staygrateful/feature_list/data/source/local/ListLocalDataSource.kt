@@ -1,8 +1,8 @@
 package com.staygrateful.feature_list.data.source.local
 
 import androidx.paging.PagingSource
-import com.staygrateful.core.network.local.entity.GameEntity
-import com.staygrateful.core.network.local.repository.IDatabaseRepository
+import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.source.local.repository.IDatabaseRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

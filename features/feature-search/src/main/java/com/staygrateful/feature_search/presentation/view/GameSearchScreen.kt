@@ -40,10 +40,11 @@ import androidx.compose.ui.unit.dp
 import com.staygrateful.core.component.ItemMessage
 import com.staygrateful.core.component.SearchInput
 import com.staygrateful.core.extension.showWithScope
-import com.staygrateful.core.network.local.entity.GameEntity
-import com.staygrateful.core.network.remote.mapper.Resource
+import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.source.remote.mapper.Resource
 import com.staygrateful.core.theme.LightRippleTheme
 import com.staygrateful.feature_search.R
+import com.staygrateful.feature_search.domain.model.GameSearchModel
 import com.staygrateful.feature_search.presentation.component.GameListItem
 import com.staygrateful.feature_search.presentation.viewmodel.GameSearchViewModel
 
@@ -54,7 +55,7 @@ fun SharedTransitionScope.GameSearchScreen(
     toolbarHeight: Dp = 65.dp,
     viewmodel: GameSearchViewModel,
     animatedVisibilityScope: AnimatedVisibilityScope,
-    onItemClick: (GameEntity) -> Unit = {},
+    onItemClick: (GameSearchModel) -> Unit = {},
     onBackPressed: () -> Unit = {},
 ) {
     val context = LocalContext.current

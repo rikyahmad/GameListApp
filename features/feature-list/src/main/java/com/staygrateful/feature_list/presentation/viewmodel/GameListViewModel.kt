@@ -3,15 +3,17 @@ package com.staygrateful.feature_list.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.staygrateful.core.extension.toGameEntity
+import com.staygrateful.core.extension.toGameModel
 import com.staygrateful.core.helper.INetworkMonitor
-import com.staygrateful.core.network.local.entity.GameEntity
-import com.staygrateful.core.network.remote.mapper.Resource
-import com.staygrateful.core.network.remote.model.GameResponse
+import com.staygrateful.core.model.GameModel
+import com.staygrateful.core.source.remote.mapper.Resource
+import com.staygrateful.core.source.remote.model.GameResponse
 import com.staygrateful.feature_list.domain.usecase.ListGameUsecase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,7 +23,8 @@ class GameListViewModel @Inject constructor(
     private val networkMonitor: INetworkMonitor
 ) : ViewModel() {
 
-    val items: Flow<List<GameEntity>> = repository.getItemsFlow()
+    val items: Flow<List<GameModel>> =
+        repository.getItemsFlow().map { list -> list.map { it.toGameModel() } }
 
     private val _result = MutableStateFlow<Resource<GameResponse?>>(Resource.Loading())
     val result: StateFlow<Resource<GameResponse?>> get() = _result

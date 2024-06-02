@@ -1,14 +1,13 @@
 package com.staygrateful.gamelistapp
 
 import android.app.Application
-import com.staygrateful.core.utils.TimberLog
 import dagger.hilt.android.HiltAndroidApp
+import timber.log.Timber
 
 @HiltAndroidApp
-class App : Application() {
+class App : BaseApp() {
 
     override fun onCreate() {
         super.onCreate()
-        TimberLog.init()
     }
 }

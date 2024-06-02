@@ -1,9 +1,9 @@
 package com.staygrateful.feature_list.domain.repository
 
 import androidx.paging.PagingData
-import com.staygrateful.core.network.local.entity.GameEntity
-import com.staygrateful.core.network.remote.mapper.Resource
-import com.staygrateful.core.network.remote.model.GameResponse
+import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.source.remote.mapper.Resource
+import com.staygrateful.core.source.remote.model.GameResponse
 import com.staygrateful.feature_list.data.repository.IListRepository
 import com.staygrateful.feature_list.domain.usecase.ListGameUsecase
 import kotlinx.coroutines.flow.Flow

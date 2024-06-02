@@ -10,8 +10,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
-import com.staygrateful.core.extension.tryNavigate
-import com.staygrateful.core.network.local.entity.GameEntity
+import com.staygrateful.feature_detail.domain.model.GameDetailModel
 import com.staygrateful.feature_detail.presentation.view.GameDetailScreen
 import com.staygrateful.feature_detail.presentation.viewmodel.GameDetailViewModel
 import com.staygrateful.feature_favorites.presentation.view.GameFavoriteScreen
@@ -20,6 +19,8 @@ import com.staygrateful.feature_list.presentation.view.GameListScreen
 import com.staygrateful.feature_list.presentation.viewmodel.GameListViewModel
 import com.staygrateful.feature_search.presentation.view.GameSearchScreen
 import com.staygrateful.feature_search.presentation.viewmodel.GameSearchViewModel
+import com.staygrateful.gamelistapp.extension.toGameDetailModel
+import com.staygrateful.gamelistapp.extension.tryNavigate
 import kotlinx.serialization.Serializable
 
 @OptIn(ExperimentalSharedTransitionApi::class)
@@ -41,7 +42,7 @@ fun NavGraph(navController: NavHostController) {
                     viewmodel = gameListViewModel,
                     animatedVisibilityScope = this,
                     onItemClick = { data ->
-                        navController.tryNavigate(data)
+                        navController.tryNavigate(data.toGameDetailModel())
                     },
                     onFavoriteClick = {
                         navController.tryNavigate(FavoriteScreen)
@@ -57,8 +58,8 @@ fun NavGraph(navController: NavHostController) {
                 )
             }
 
-            composable<GameEntity> {
-                val args = it.toRoute<GameEntity>()
+            composable<GameDetailModel> {
+                val args = it.toRoute<GameDetailModel>()
                 GameDetailScreen(
                     data = args,
                     viewmodel = detailViewModel,
@@ -74,7 +75,7 @@ fun NavGraph(navController: NavHostController) {
                     viewmodel = favoriteViewModel,
                     animatedVisibilityScope = this,
                     onItemClick = { data ->
-                        navController.tryNavigate(data)
+                        navController.tryNavigate(data.toGameDetailModel())
                     },
                     onBackPressed = {
                         navController.popBackStack()
@@ -87,7 +88,7 @@ fun NavGraph(navController: NavHostController) {
                     viewmodel = searchViewModel,
                     animatedVisibilityScope = this,
                     onItemClick = { data ->
-                        navController.tryNavigate(data)
+                        navController.tryNavigate(data.toGameDetailModel())
                     },
                     onBackPressed = {
                         navController.popBackStack()

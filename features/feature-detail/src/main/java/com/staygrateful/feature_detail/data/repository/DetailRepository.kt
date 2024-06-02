@@ -1,8 +1,8 @@
 package com.staygrateful.feature_detail.data.repository
 
-import com.staygrateful.core.network.local.entity.FavoriteGameEntity
-import com.staygrateful.core.network.remote.mapper.Resource
-import com.staygrateful.core.network.remote.model.DetailGameResponse
+import com.staygrateful.core.source.local.entity.FavoriteGameEntity
+import com.staygrateful.core.source.remote.mapper.Resource
+import com.staygrateful.core.source.remote.model.DetailGameResponse
 import com.staygrateful.feature_detail.data.source.local.IDetailLocalDataSource
 import com.staygrateful.feature_detail.data.source.remote.IDetailRemoteDataSource
 import kotlinx.coroutines.flow.Flow

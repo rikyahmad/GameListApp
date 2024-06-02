@@ -1,7 +1,7 @@
 package com.staygrateful.feature_list.di
 
-import com.staygrateful.core.network.local.repository.DatabaseRepository
-import com.staygrateful.core.network.remote.repository.INetworkRepository
+import com.staygrateful.core.source.local.repository.DatabaseRepository
+import com.staygrateful.core.source.remote.repository.INetworkRepository
 import com.staygrateful.feature_list.data.repository.IListRepository
 import com.staygrateful.feature_list.data.repository.ListRepository
 import com.staygrateful.feature_list.data.source.local.IListLocalDataSource

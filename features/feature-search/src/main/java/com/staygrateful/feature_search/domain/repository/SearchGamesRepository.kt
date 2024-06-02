@@ -1,7 +1,7 @@
 package com.staygrateful.feature_search.domain.repository
 
-import com.staygrateful.core.network.remote.mapper.Resource
-import com.staygrateful.core.network.remote.model.SearchGameResponse
+import com.staygrateful.core.source.remote.mapper.Resource
+import com.staygrateful.core.source.remote.model.SearchGameResponse
 import com.staygrateful.feature_search.data.repository.ISearchRepository
 import com.staygrateful.feature_search.domain.usecase.SearchGameUsecase
 import kotlinx.coroutines.flow.Flow

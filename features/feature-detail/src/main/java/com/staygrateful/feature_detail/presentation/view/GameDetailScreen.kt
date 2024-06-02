@@ -43,19 +43,17 @@ import coil.request.ImageRequest
 import com.staygrateful.core.component.CollapsingBar
 import com.staygrateful.core.component.HtmlText
 import com.staygrateful.core.component.SimpleAppBar
-import com.staygrateful.core.extension.Unknown
-import com.staygrateful.core.extension.copy
 import com.staygrateful.core.extension.showWithScope
-import com.staygrateful.core.network.local.entity.GameEntity
-import com.staygrateful.core.network.remote.mapper.Resource
+import com.staygrateful.core.source.remote.mapper.Resource
 import com.staygrateful.feature_detail.R
+import com.staygrateful.feature_detail.domain.model.GameDetailModel
 import com.staygrateful.feature_detail.presentation.component.DetailPlaceholder
 import com.staygrateful.feature_detail.presentation.viewmodel.GameDetailViewModel
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun SharedTransitionScope.GameDetailScreen(
-    data: GameEntity,
+    data: GameDetailModel,
     viewmodel: GameDetailViewModel,
     animatedVisibilityScope: AnimatedVisibilityScope,
     headerHeight: Dp = 350.dp,
@@ -76,7 +74,7 @@ fun SharedTransitionScope.GameDetailScreen(
         mutableStateOf(false)
     }
 
-    var gameEntity by remember {
+    var gameModel by remember {
         mutableStateOf(data)
     }
 
@@ -84,17 +82,17 @@ fun SharedTransitionScope.GameDetailScreen(
         if (gameDetailResources is Resource.Success) {
             val detailData = gameDetailResources.data
             if (detailData?.id == data.gameId) {
-                gameEntity = data.copy(
-                    description = detailData.description ?: Unknown,
-                    developer = detailData.developersName ?: Unknown,
+                gameModel = data.copy(
+                    description = detailData.description,
+                    developer = detailData.developersName,
                 )
             }
         } else if (gameDetailResources is Resource.Error) {
             snackBarHostState.showSnackbar(
                 context.getString(
-                    R.string.error_message,
-                    gameDetailResources.message
-                ))
+                    R.string.error_message, gameDetailResources.message
+                )
+            )
         }
     }
 
@@ -105,22 +103,16 @@ fun SharedTransitionScope.GameDetailScreen(
         }
     }
 
-    CollapsingBar(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White),
+    CollapsingBar(modifier = Modifier
+        .fillMaxSize()
+        .background(Color.White),
         snackbarState = snackBarHostState,
         snackbarHost = {
-            SnackbarHost(
-                hostState = snackBarHostState,
-                snackbar = { data ->
-                    Snackbar(
-                        snackbarData = data,
-                        containerColor = Color.Red,
-                        contentColor = Color.White
-                    )
-                }
-            )
+            SnackbarHost(hostState = snackBarHostState, snackbar = { data ->
+                Snackbar(
+                    snackbarData = data, containerColor = Color.Red, contentColor = Color.White
+                )
+            })
         },
         headerHeight = headerHeight,
         toolbarColor = MaterialTheme.colorScheme.primary,
@@ -128,66 +120,54 @@ fun SharedTransitionScope.GameDetailScreen(
             collapsingValue = value
         },
         contentToolbar = {
-            SimpleAppBar(
-                modifier = Modifier.fillMaxSize(),
+            SimpleAppBar(modifier = Modifier.fillMaxSize(),
                 leadingIcon = Icons.AutoMirrored.Filled.ArrowBack,
                 actionIcon = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
                 containerColor = Color.Transparent,
                 leadingIconColor = Color.White,
                 actionIconColor = Color.White,
-                iconBackgroundColor = Color.DarkGray
-                    .copy(
-                        (collapsingValue - 0.6f)
-                            .coerceAtLeast(0f)
+                iconBackgroundColor = Color.DarkGray.copy(
+                        (collapsingValue - 0.6f).coerceAtLeast(0f)
                     ),
                 onLeadingClick = {
                     onBackPressed.invoke()
                 },
                 onActionClick = {
                     onUpdateFavorite.invoke(!isFavorite)
-                    viewmodel.updateFavoriteStatus(gameEntity, !isFavorite, onResult = {
+                    viewmodel.updateFavoriteStatus(gameModel, !isFavorite, onResult = {
                         isFavorite = !isFavorite
                     })
-                }
-            )
+                })
         },
         contentHeader = {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(gameEntity.backgroundImage)
-                    .diskCacheKey(gameEntity.backgroundImage)
-                    .memoryCacheKey(gameEntity.backgroundImage)
-                    .crossfade(true)
-                    .build(),
+            AsyncImage(model = ImageRequest.Builder(LocalContext.current)
+                .data(gameModel.backgroundImage).diskCacheKey(gameModel.backgroundImage)
+                .memoryCacheKey(gameModel.backgroundImage).crossfade(true).build(),
                 contentDescription = stringResource(R.string.desc_detail_image),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .background(Color.LightGray)
                     .fillMaxSize()
-                    .sharedElement(
-                        state = rememberSharedContentState(
-                            key = stringResource(
-                                R.string.key_image,
-                                gameEntity.gameId
-                            )
-                        ),
+                    .sharedElement(state = rememberSharedContentState(
+                        key = stringResource(
+                            R.string.key_image, gameModel.gameId
+                        )
+                    ),
                         animatedVisibilityScope = animatedVisibilityScope,
                         boundsTransform = { _, _ ->
                             tween(durationMillis = 300)
-                        }
-                    )
-            )
-        }
-    ) {
+                        }))
+        }) {
         item {
-            GameDetails(data = gameEntity)
+            GameDetails(data = gameModel)
         }
     }
 
     LaunchedEffect(isConnected) {
         if (!isConnected) {
-            snackBarHostState.showWithScope(coroutineScope,
-                context.getString(R.string.error_internet_connection))
+            snackBarHostState.showWithScope(
+                coroutineScope, context.getString(R.string.error_internet_connection)
+            )
         }
     }
 }
@@ -195,7 +175,7 @@ fun SharedTransitionScope.GameDetailScreen(
 @Composable
 fun GameDetails(
     modifier: Modifier = Modifier,
-    data: GameEntity,
+    data: GameDetailModel,
 ) {
     Column(
         modifier = modifier
@@ -204,33 +184,37 @@ fun GameDetails(
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = data.name,
-            fontSize = 20.sp,
-            textAlign = TextAlign.Start,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(bottom = 10.dp)
-                .fillMaxWidth()
-                .align(Alignment.Start)
-        )
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = stringResource(R.string.game_release_date, data.released),
-            fontSize = 14.sp,
-            lineHeight = 17.sp,
-            fontWeight = FontWeight.Normal,
-        )
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = stringResource(R.string.game_genres, data.genres.joinToString(", ")),
-            fontSize = 14.sp,
-            lineHeight = 17.sp,
-            fontWeight = FontWeight.Normal,
-        )
-        if (data.developer.isEmpty() || data.developer == Unknown ||
-            data.description.isEmpty() || data.description == Unknown
-        ) {
+        if (data.name != null) {
+            Text(
+                text = data.name,
+                fontSize = 20.sp,
+                textAlign = TextAlign.Start,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .padding(bottom = 10.dp)
+                    .fillMaxWidth()
+                    .align(Alignment.Start)
+            )
+        }
+        if (data.released != null) {
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = stringResource(R.string.game_release_date, data.released),
+                fontSize = 14.sp,
+                lineHeight = 17.sp,
+                fontWeight = FontWeight.Normal,
+            )
+        }
+        if (data.genres?.isNotEmpty() == true) {
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = stringResource(R.string.game_genres, data.genres.joinToString(", ")),
+                fontSize = 14.sp,
+                lineHeight = 17.sp,
+                fontWeight = FontWeight.Normal,
+            )
+        }
+        if (data.developer.isNullOrEmpty() || data.description.isNullOrEmpty()) {
             DetailPlaceholder(
                 modifier = Modifier.padding(top = 20.dp)
             )

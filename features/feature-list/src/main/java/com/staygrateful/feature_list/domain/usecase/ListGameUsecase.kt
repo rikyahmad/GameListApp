@@ -1,9 +1,9 @@
 package com.staygrateful.feature_list.domain.usecase
 
 import androidx.paging.PagingData
-import com.staygrateful.core.network.local.entity.GameEntity
-import com.staygrateful.core.network.remote.mapper.Resource
-import com.staygrateful.core.network.remote.model.GameResponse
+import com.staygrateful.core.source.local.entity.GameEntity
+import com.staygrateful.core.source.remote.mapper.Resource
+import com.staygrateful.core.source.remote.model.GameResponse
 import kotlinx.coroutines.flow.Flow
 
 interface ListGameUsecase {
