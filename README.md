@@ -1,4 +1,4 @@
-# Game List Android App using RAWG API
+# Game List Android App using RAWG API (Kompas Technical Test)
 
 This is an Simple Android application that displays a list of games using the RAWG API. The application has 4 main screens: List, Detail, Search, and Favorite.
 
@@ -17,7 +17,7 @@ This is an Simple Android application that displays a list of games using the RA
 
 - **Programming Language**: Kotlin
 - **Architecture**: MVVM (Model-View-ViewModel)
-- **Unit Testing**: Using Espresso, Mockito, JUnit
+- **Unit Testing**: Using Compose Testing, Mockito, JUnit
 - **Modularization**: By feature
 - **Reactive Programming**: Using Kotlin Flow
 - **Dependency Injection**: Using Hilt
