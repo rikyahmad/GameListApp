@@ -1,4 +1,4 @@
-# Game List Android App using RAWG API (Kompas Technical Test)
+# Game List Android App using RAWG API
 
 This is an Simple Android application that displays a list of games using the RAWG API. The application has 4 main screens: List, Detail, Search, and Favorite.
 
